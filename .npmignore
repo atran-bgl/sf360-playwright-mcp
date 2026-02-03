@@ -1,0 +1,47 @@
+# Development files - not needed in published package
+tests/
+helpers/
+specs/
+screenshots/
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Build artifacts
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.*
+
+# MCP server source (include only dist)
+mcp-server/src/
+mcp-server/node_modules/
+mcp-server/tsconfig.json
+
+# Keep MCP server dist for Claude integration
+!mcp-server/dist/
+!mcp-server/package.json
+
+# Keep templates for user projects
+!templates/
+
+# Documentation (keep main docs)
+!README.md
+!INSTALLATION.md
+!CHANGELOG.md

@@ -1,0 +1,37 @@
+{
+  "name": "noncompliance",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test-superstream": "npx playwright test --project=superstream",
+    "test-member": "npx playwright test --project=member"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.840.0",
+    "axios": "^1.10.0",
+    "chai": "^5.2.0",
+    "chai-subset": "^1.6.0",
+    "cheerio": "^1.0.0-rc.10",
+    "date-fns": "^4.1.0",
+    "decimal.js": "^10.6.0",
+    "http-cookie-agent": "^2.1.2",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "otplib": "^12.0.1",
+    "playwright": "^1.52.0",
+    "tough-cookie": "^4.1.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^22.15.23"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "description": ""
+}

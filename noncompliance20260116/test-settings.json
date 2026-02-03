@@ -1,0 +1,18 @@
+{
+  "waitTime": {
+    "short": 500,
+    "medium": 1000,
+    "long": 2000,
+    "superLong": 5000,
+    "loadSmall": 10000,
+    "loadMedium": 20000,
+    "loadBig": 30000
+  },
+  "retry": {
+    "shortInterval": 1000,
+    "interval": 5000,
+    "maxAttempt": 60,
+    "supeMaxAttempt": 120,
+    "maxAttemptForInternalError": 6
+  }
+}

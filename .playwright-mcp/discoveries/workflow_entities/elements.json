@@ -1,0 +1,533 @@
+{
+  "pageKey": "workflow_entities",
+  "pageName": "Workflow Entities",
+  "pageUrl": "/s/workflow/list/",
+  "section": "WORKFLOW",
+  "discoveredAt": "2026-02-03T01:30:00.000Z",
+  "requiresFund": false,
+  "requiresMember": false,
+  "testData": {},
+  "elements": [
+    {
+      "id": "search-entities-input",
+      "type": "textbox",
+      "dataType": "string",
+      "label": "Search entities...",
+      "placeholder": "Search entities...",
+      "required": false,
+      "selectors": {
+        "role": "textbox",
+        "label": "Search entities...",
+        "css": "input[placeholder='Search entities...']"
+      },
+      "notes": "Main search box for filtering entities by name or code"
+    },
+    {
+      "id": "notifications-button",
+      "type": "button",
+      "label": "Notifications",
+      "action": "open_notifications",
+      "selectors": {
+        "role": "button",
+        "text": "Notifications"
+      },
+      "notes": "Opens notifications panel for workflow-related alerts"
+    },
+    {
+      "id": "tasks-for-me-button",
+      "type": "button",
+      "label": "Tasks for me",
+      "action": "filter",
+      "selectors": {
+        "role": "button",
+        "text": "Tasks for me"
+      },
+      "notes": "Quick filter button to show entities with tasks assigned to current user"
+    },
+    {
+      "id": "whats-for-me-button",
+      "type": "button",
+      "label": "What's for me",
+      "action": "filter",
+      "selectors": {
+        "role": "button",
+        "text": "What's for me"
+      },
+      "notes": "Quick filter button (functionality TBD)"
+    },
+    {
+      "id": "assigned-user-dropdown",
+      "type": "button",
+      "dataType": "enum",
+      "label": "Assigned user...",
+      "action": "dropdown",
+      "selectors": {
+        "role": "button",
+        "text": "Assigned user..."
+      },
+      "notes": "Dropdown to filter entities by assigned user. Opens searchable list with user avatars, emails, and 'Unassigned' option"
+    },
+    {
+      "id": "assigned-user-search",
+      "type": "textbox",
+      "dataType": "string",
+      "label": "Search...",
+      "placeholder": "Search...",
+      "required": false,
+      "selectors": {
+        "role": "textbox",
+        "label": "Search..."
+      },
+      "notes": "Search box within assigned user dropdown (only visible when dropdown is open)"
+    },
+    {
+      "id": "filters-button",
+      "type": "button",
+      "label": "Filters",
+      "action": "open_modal",
+      "selectors": {
+        "role": "button",
+        "text": "Filters"
+      },
+      "notes": "Opens filters modal with advanced filtering options"
+    },
+    {
+      "id": "filter-financial-year-dropdown",
+      "type": "combobox",
+      "dataType": "enum",
+      "label": "Financial Year",
+      "placeholder": "Select...",
+      "required": false,
+      "selectors": {
+        "role": "combobox",
+        "label": "Financial Year Select..."
+      },
+      "notes": "Filter by financial year (only visible in Filters modal)"
+    },
+    {
+      "id": "filter-job-status-dropdown",
+      "type": "combobox",
+      "dataType": "enum",
+      "label": "Job Status",
+      "defaultValue": "All Unfinished",
+      "required": false,
+      "selectors": {
+        "role": "combobox",
+        "label": "Job Status All Unfinished"
+      },
+      "notes": "Filter by job completion status. Default value is 'All Unfinished' (only visible in Filters modal)"
+    },
+    {
+      "id": "filter-due-in-dropdown",
+      "type": "combobox",
+      "dataType": "enum",
+      "label": "Due in...",
+      "placeholder": "Select...",
+      "required": false,
+      "selectors": {
+        "role": "combobox",
+        "label": "Due in... Select..."
+      },
+      "notes": "Filter by due date timeframe (only visible in Filters modal)"
+    },
+    {
+      "id": "filter-label-dropdown",
+      "type": "combobox",
+      "dataType": "enum",
+      "label": "Label",
+      "placeholder": "Select...",
+      "required": false,
+      "selectors": {
+        "role": "combobox"
+      },
+      "notes": "Filter by entity labels/tags (only visible in Filters modal)"
+    },
+    {
+      "id": "filter-job-template-dropdown",
+      "type": "combobox",
+      "dataType": "enum",
+      "label": "Job Template",
+      "placeholder": "Select...",
+      "required": false,
+      "selectors": {
+        "role": "combobox",
+        "label": "Job Template Select..."
+      },
+      "notes": "Filter by job template type (only visible in Filters modal)"
+    },
+    {
+      "id": "filter-starts-before-datepicker",
+      "type": "textbox",
+      "dataType": "date",
+      "label": "Starts before",
+      "placeholder": "dd/mm/yyyy",
+      "format": "DD/MM/YYYY",
+      "required": false,
+      "defaultValue": "03/02/2026",
+      "selectors": {
+        "role": "textbox",
+        "label": "Starts before"
+      },
+      "notes": "Filter by job start date. Shows current date by default (only visible in Filters modal)"
+    },
+    {
+      "id": "reset-filters-button",
+      "type": "button",
+      "label": "Reset Filters",
+      "action": "reset",
+      "selectors": {
+        "role": "button",
+        "text": "Reset Filters"
+      },
+      "notes": "Clears all applied filters. Button is disabled when no filters are active (only visible in Filters modal)"
+    },
+    {
+      "id": "close-filters-button",
+      "type": "button",
+      "label": "×",
+      "action": "close_modal",
+      "selectors": {
+        "role": "button",
+        "text": "×"
+      },
+      "notes": "Closes the filters modal (only visible in Filters modal)"
+    },
+    {
+      "id": "table-header-code",
+      "type": "columnheader",
+      "label": "Code",
+      "action": "sort",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Code"
+      },
+      "notes": "Sortable column header for entity code"
+    },
+    {
+      "id": "table-header-name",
+      "type": "columnheader",
+      "label": "Name",
+      "action": "sort",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Name"
+      },
+      "notes": "Sortable column header for entity name"
+    },
+    {
+      "id": "table-header-labels",
+      "type": "columnheader",
+      "label": "Labels",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Labels"
+      },
+      "notes": "Column header for entity labels (not sortable)"
+    },
+    {
+      "id": "table-header-assignees",
+      "type": "columnheader",
+      "label": "Assignees",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Assignees"
+      },
+      "notes": "Column header for assigned users (not sortable)"
+    },
+    {
+      "id": "table-header-default-assignee",
+      "type": "columnheader",
+      "label": "Default Assignee",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Default Assignee"
+      },
+      "notes": "Column header for default assignee (shows info icon tooltip)"
+    },
+    {
+      "id": "table-header-last-task-completed",
+      "type": "columnheader",
+      "label": "Last task completed",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Last task completed"
+      },
+      "notes": "Column header for last completed task info (not sortable)"
+    },
+    {
+      "id": "table-header-jobs",
+      "type": "columnheader",
+      "label": "Jobs",
+      "action": "sort",
+      "selectors": {
+        "role": "columnheader",
+        "text": "Jobs"
+      },
+      "notes": "Sortable column header for job counts"
+    },
+    {
+      "id": "row-expand-button",
+      "type": "button",
+      "label": "",
+      "action": "expand_row",
+      "selectors": {
+        "role": "button",
+        "css": "button[aria-label='']"
+      },
+      "notes": "Expandable/collapsible button in each table row. Shows expand icon when collapsed, collapse icon when expanded. Reveals 'Add Job' button when expanded"
+    },
+    {
+      "id": "entity-icon",
+      "type": "generic",
+      "label": "Entity Icon",
+      "selectors": {
+        "css": ".entity-icon"
+      },
+      "notes": "Colored circular icon with entity initials. Different colors for different entity types"
+    },
+    {
+      "id": "entity-name-link",
+      "type": "link",
+      "label": "Entity Name",
+      "action": "navigate",
+      "selectors": {
+        "role": "link"
+      },
+      "notes": "Clickable entity name that navigates to entity details page. URL format: /s/workflow/list/{entityId}/"
+    },
+    {
+      "id": "entity-label-badge",
+      "type": "generic",
+      "label": "Label Badge",
+      "selectors": {
+        "css": ".label-badge"
+      },
+      "notes": "Colored badges representing entity labels (e.g., '2223'). Multiple labels may appear per entity"
+    },
+    {
+      "id": "assignee-avatar",
+      "type": "generic",
+      "label": "Assignee Avatar",
+      "selectors": {
+        "css": ".assignee-avatar"
+      },
+      "notes": "Circular avatar with user initials (e.g., 'SP', 'YD', 'LC'). Multiple avatars shown for multiple assignees"
+    },
+    {
+      "id": "default-assignee-button",
+      "type": "button",
+      "label": "Unassigned",
+      "action": "assign_user",
+      "selectors": {
+        "role": "button",
+        "text": "Unassigned"
+      },
+      "notes": "Shows default assignee. Displays 'U Unassigned' when no default assignee set. Clickable to assign user"
+    },
+    {
+      "id": "jobs-counter",
+      "type": "generic",
+      "label": "Jobs Counter",
+      "selectors": {
+        "css": ".jobs-counter"
+      },
+      "notes": "Displays job counts with colored badges. Red badge shows total jobs, orange shows in-progress, blue shows completed. Example: '5 1 1' means 5 total, 1 in-progress, 1 completed"
+    },
+    {
+      "id": "add-job-button",
+      "type": "button",
+      "label": "Add Job",
+      "action": "add_job",
+      "selectors": {
+        "role": "button",
+        "text": "Add Job"
+      },
+      "notes": "Appears only when entity row is expanded. Creates new job for the entity"
+    },
+    {
+      "id": "load-more-button",
+      "type": "button",
+      "label": "Load more...",
+      "action": "load_more",
+      "selectors": {
+        "role": "button",
+        "text": "Load more..."
+      },
+      "notes": "Loads additional entities in the table (pagination)"
+    },
+    {
+      "id": "workflow-jobs-tab",
+      "type": "link",
+      "label": "WORKFLOW JOBS",
+      "action": "navigate",
+      "selectors": {
+        "role": "link",
+        "text": "WORKFLOW JOBS"
+      },
+      "notes": "Navigation tab to Workflow Jobs page"
+    },
+    {
+      "id": "workflow-entities-tab",
+      "type": "link",
+      "label": "WORKFLOW ENTITIES",
+      "action": "navigate",
+      "selectors": {
+        "role": "link",
+        "text": "WORKFLOW ENTITIES"
+      },
+      "notes": "Navigation tab for current page (active)"
+    },
+    {
+      "id": "workflow-overview-tab",
+      "type": "link",
+      "label": "WORKFLOW OVERVIEW",
+      "action": "navigate",
+      "selectors": {
+        "role": "link",
+        "text": "WORKFLOW OVERVIEW"
+      },
+      "notes": "Navigation tab to Workflow Overview page"
+    }
+  ],
+  "sections": [
+    {
+      "name": "Header",
+      "elements": [
+        "search-entities-input",
+        "notifications-button"
+      ]
+    },
+    {
+      "name": "Quick Filters",
+      "elements": [
+        "tasks-for-me-button",
+        "whats-for-me-button",
+        "assigned-user-dropdown",
+        "filters-button"
+      ]
+    },
+    {
+      "name": "Advanced Filters Modal",
+      "elements": [
+        "filter-financial-year-dropdown",
+        "filter-job-status-dropdown",
+        "filter-due-in-dropdown",
+        "filter-label-dropdown",
+        "filter-job-template-dropdown",
+        "filter-starts-before-datepicker",
+        "reset-filters-button",
+        "close-filters-button"
+      ]
+    },
+    {
+      "name": "Entities Table",
+      "elements": [
+        "table-header-code",
+        "table-header-name",
+        "table-header-labels",
+        "table-header-assignees",
+        "table-header-default-assignee",
+        "table-header-last-task-completed",
+        "table-header-jobs",
+        "row-expand-button",
+        "entity-icon",
+        "entity-name-link",
+        "entity-label-badge",
+        "assignee-avatar",
+        "default-assignee-button",
+        "jobs-counter",
+        "add-job-button"
+      ]
+    },
+    {
+      "name": "Table Footer",
+      "elements": [
+        "load-more-button"
+      ]
+    },
+    {
+      "name": "Navigation Tabs",
+      "elements": [
+        "workflow-jobs-tab",
+        "workflow-entities-tab",
+        "workflow-overview-tab"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "Search Entities",
+      "trigger": "search-entities-input",
+      "requiredFields": [],
+      "expectedOutcome": "Table filters to show matching entities by name or code"
+    },
+    {
+      "name": "Filter by Assigned User",
+      "trigger": "assigned-user-dropdown",
+      "requiredFields": [],
+      "expectedOutcome": "Dropdown opens with searchable list of users. Selecting a user filters table to show only entities assigned to that user"
+    },
+    {
+      "name": "Apply Advanced Filters",
+      "trigger": "filters-button",
+      "requiredFields": [],
+      "expectedOutcome": "Filters modal opens. User can select multiple filter criteria. Applying filters updates the table results"
+    },
+    {
+      "name": "Sort Table Column",
+      "trigger": "table-header-code",
+      "requiredFields": [],
+      "expectedOutcome": "Table sorts by selected column (ascending/descending toggle)"
+    },
+    {
+      "name": "Expand Entity Row",
+      "trigger": "row-expand-button",
+      "requiredFields": [],
+      "expectedOutcome": "Row expands to show 'Add Job' button. Clicking again collapses the row"
+    },
+    {
+      "name": "Navigate to Entity Details",
+      "trigger": "entity-name-link",
+      "requiredFields": [],
+      "expectedOutcome": "Navigates to entity-specific workflow details page"
+    },
+    {
+      "name": "Add Job to Entity",
+      "trigger": "add-job-button",
+      "requiredFields": [],
+      "expectedOutcome": "Opens job creation modal/form for the selected entity"
+    },
+    {
+      "name": "Assign Default User",
+      "trigger": "default-assignee-button",
+      "requiredFields": [],
+      "expectedOutcome": "Opens user assignment dialog to set default assignee for entity"
+    },
+    {
+      "name": "Load More Entities",
+      "trigger": "load-more-button",
+      "requiredFields": [],
+      "expectedOutcome": "Loads next page of entities into the table"
+    }
+  ],
+  "screenshots": [
+    "screenshot/main.png",
+    "screenshot/full-page.png",
+    "screenshot/modal-filters.png",
+    "screenshot/dropdown-assigned-user.png",
+    "screenshot/row-expanded.png"
+  ],
+  "notes": [
+    "Page displays a list of workflow entities (funds/companies) with their associated jobs and assignees",
+    "Each entity row can be expanded to reveal additional actions",
+    "Table supports sorting by Code, Name, and Jobs columns",
+    "Multiple filter options available: quick filters and advanced filters modal",
+    "Job counters use color-coded badges: red (total), orange (in-progress), blue (completed)",
+    "Entity icons are color-coded by type: orange for companies, blue for SMSF",
+    "Assignees displayed as circular avatars with initials",
+    "Default assignee shows 'U Unassigned' when not set",
+    "Pagination implemented via 'Load more...' button",
+    "Search is real-time and filters entities by name or code",
+    "Date format is DD/MM/YYYY (Australian format)"
+  ]
+}

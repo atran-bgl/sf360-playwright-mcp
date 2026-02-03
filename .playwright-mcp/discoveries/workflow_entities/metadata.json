@@ -1,0 +1,11 @@
+{
+  "pageKey": "workflow_entities",
+  "pageName": "Workflow Entities",
+  "pageUrl": "/s/workflow/list/",
+  "fullUrl": "https://uat.sf360.com.au/s/workflow/list/?firm=sf360test&uid=518",
+  "section": "WORKFLOW",
+  "requiresFund": false,
+  "requiresMember": false,
+  "discoveredAt": "2026-02-03T01:23:35.693Z",
+  "testData": {}
+}

@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "id": "string (unique identifier, e.g., TASK-001)",
+      "title": "string (brief task description)",
+      "description": "string (detailed description)",
+      "status": "pending | in_progress | completed",
+      "priority": "low | medium | high | critical",
+      "acceptanceCriteria": ["string array of criteria"],
+      "dependencies": ["array of task IDs this depends on"],
+      "subtasks": [
+        {
+          "id": "string (e.g., TASK-001-1)",
+          "title": "string",
+          "status": "pending | in_progress | completed",
+          "acceptanceCriteria": ["optional criteria"]
+        }
+      ],
+      "specReference": "string (path to spec file, e.g., specs/feature-auth.md)",
+      "complexity": "string (optional: simple, moderate, complex)",
+      "createdAt": "ISO 8601 timestamp",
+      "updatedAt": "ISO 8601 timestamp",
+      "completedAt": "ISO 8601 timestamp (null if not completed)"
+    }
+  ]
+}

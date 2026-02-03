@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "testName": "workflow-entities-search",
+    "originalSpec": "Test the search entities function on workflow entities page",
+    "createdAt": "2026-02-03T01:45:00.000Z",
+    "version": "1.0.0",
+    "toolVersion": "sf360-test-plan v1.0"
+  },
+  "targetPage": {
+    "pageKey": "workflow_entities",
+    "name": "Workflow Entities",
+    "url": "/s/workflow/list/",
+    "section": "WORKFLOW",
+    "requiresFund": false,
+    "requiresMember": false
+  },
+  "requirements": {
+    "needsFund": false,
+    "needsMember": false,
+    "setupOptions": {
+      "firm": "{{process.env.FIRM}}",
+      "pageKey": "workflow_entities"
+    }
+  },
+  "testSteps": [
+    {
+      "step": 1,
+      "action": "setup",
+      "description": "Authenticate (no fund/member needed)",
+      "type": "setup",
+      "code": "const ctx = await setupTest(page, { firm: process.env.FIRM, pageKey: 'workflow_entities' });"
+    },
+    {
+      "step": 2,
+      "action": "navigate",
+      "description": "Navigate to workflow entities page",
+      "type": "setup",
+      "code": "await page.goto(`${ctx.baseUrl}/s/workflow/list/?firm=${ctx.firm}&uid=${ctx.uid}`);\nawait page.waitForLoadState('networkidle');"
+    },
+    {
+      "step": 3,
+      "action": "search_exact",
+      "description": "Type 'ERICNEWC8529' in search box",
+      "type": "action",
+      "target": "search-entities-input",
+      "code": "await page.getByPlaceholder('Search entities...').fill('ERICNEWC8529');\nawait page.waitForTimeout(500);"
+    },
+    {
+      "step": 4,
+      "action": "verify_exact",
+      "description": "Verify table shows exactly 1 entity with code 'ERICNEWC8529'",
+      "type": "assertion",
+      "code": "const rows = page.locator('table tbody tr');\nconst rowCount = await rows.count();\nexpect(rowCount).toBe(1);\nawait expect(page.getByText('ERICNEWC8529')).toBeVisible();"
+    },
+    {
+      "step": 5,
+      "action": "clear_search",
+      "description": "Clear search box",
+      "type": "action",
+      "code": "await page.getByPlaceholder('Search entities...').clear();\nawait page.waitForTimeout(500);"
+    },
+    {
+      "step": 6,
+      "action": "search_partial",
+      "description": "Type 'Eric' in search box",
+      "type": "action",
+      "code": "await page.getByPlaceholder('Search entities...').fill('Eric');\nawait page.waitForTimeout(500);"
+    },
+    {
+      "step": 7,
+      "action": "verify_partial",
+      "description": "Verify table shows 2 entities containing 'Eric'",
+      "type": "assertion",
+      "code": "const rows = page.locator('table tbody tr');\nconst rowCount = await rows.count();\nexpect(rowCount).toBe(2);\nawait expect(page.getByText('Eric New Company')).toBeVisible();\nawait expect(page.getByText('Eric New SMSF')).toBeVisible();"
+    },
+    {
+      "step": 8,
+      "action": "search_no_results",
+      "description": "Clear search and type 'XYZ999NOTFOUND'",
+      "type": "action",
+      "code": "await page.getByPlaceholder('Search entities...').clear();\nawait page.getByPlaceholder('Search entities...').fill('XYZ999NOTFOUND');\nawait page.waitForTimeout(500);"
+    },
+    {
+      "step": 9,
+      "action": "verify_no_results",
+      "description": "Verify table shows no entities (0 rows or empty state)",
+      "type": "assertion",
+      "code": "const rows = page.locator('table tbody tr');\nconst rowCount = await rows.count();\nexpect(rowCount).toBe(0);"
+    }
+  ],
+  "testData": {
+    "searchTerms": {
+      "exact": "ERICNEWC8529",
+      "exactDescription": "Exact entity code match - should return 1 result",
+      "partial": "Eric",
+      "partialDescription": "Partial name match - should return 2 results",
+      "noResults": "XYZ999NOTFOUND",
+      "noResultsDescription": "Non-existent term - should return 0 results"
+    },
+    "expectedResults": {
+      "exactMatch": {
+        "count": 1,
+        "entityCode": "ERICNEWC8529",
+        "entityName": "Eric New Company"
+      },
+      "partialMatch": {
+        "count": 2,
+        "entities": [
+          "Eric New Company",
+          "Eric New SMSF"
+        ]
+      },
+      "noMatch": {
+        "count": 0
+      }
+    }
+  },
+  "selectors": {
+    "searchInput": {
+      "id": "search-entities-input",
+      "playwrightSelector": "page.getByPlaceholder('Search entities...')",
+      "alternativeSelectors": [
+        "page.getByRole('textbox', { name: 'Search entities...' })",
+        "page.locator('input[placeholder=\"Search entities...\"]')"
+      ]
+    },
+    "tableRows": {
+      "id": "table-rows",
+      "playwrightSelector": "page.locator('table tbody tr')",
+      "notes": "All rows in the entities table"
+    },
+    "entityCodeCell": {
+      "playwrightSelector": "page.locator('table tbody tr td:nth-child(3)')",
+      "notes": "Third column contains entity code"
+    },
+    "entityNameLink": {
+      "playwrightSelector": "page.getByRole('link')",
+      "notes": "Entity names are clickable links in the table"
+    }
+  },
+  "explorationResults": {
+    "exploredAt": "2026-02-03T01:30:00.000Z",
+    "exploredElements": {
+      "buttons": 8,
+      "inputs": 7,
+      "tables": 1,
+      "links": 20
+    },
+    "screenshotsAvailable": [
+      ".playwright-mcp/discoveries/workflow_entities/screenshot/main.png",
+      ".playwright-mcp/discoveries/workflow_entities/screenshot/full-page.png"
+    ],
+    "elementsInventory": ".playwright-mcp/discoveries/workflow_entities/elements.json"
+  },
+  "notes": [
+    "Search is real-time - filters update as user types",
+    "Search is case-insensitive",
+    "Search matches both entity code and entity name",
+    "No dedicated 'no results' message - table just shows 0 rows",
+    "May need to adjust wait times if search has debouncing",
+    "Known test data from discovery: ERICNEWC8529 (Eric New Company), ERICNEWS8542 (Eric New SMSF)",
+    "Test uses existing entities - no test data creation needed"
+  ]
+}

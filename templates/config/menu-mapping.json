@@ -1,0 +1,713 @@
+{
+  "_comment": "SF360 Page URL Mapping - Discovered via explore-all-pages.js on SMSF fund",
+  "home": {
+    "insights_dashboard": {
+      "name": "Insights Dashboard",
+      "url": "/s/analyticaldashboard/",
+      "section": "HOME",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "entity_selection": {
+      "name": "Entity Selection",
+      "url": "/s/entity/fundlist/",
+      "section": "HOME",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "getting_started": {
+      "name": "Getting Started",
+      "url": "/s/dashboard/",
+      "section": "HOME",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "entity_setup": {
+      "name": "Entity Setup",
+      "url": "/s/entity_setup/",
+      "section": "HOME",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "bulk_entity_setup": {
+      "name": "Bulk Entity Setup",
+      "url": "/s/cs-feed-management/bulk-entity-setup/",
+      "section": "HOME",
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  },
+  "workflow": {
+    "workflow_jobs": {
+      "name": "Workflow Jobs",
+      "url": "/s/workflow/jobs/",
+      "section": "WORKFLOW",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "workflow_entities": {
+      "name": "Workflow Entities",
+      "url": "/s/workflow/list/",
+      "section": "WORKFLOW",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "workflow_overview": {
+      "name": "Workflow Overview",
+      "url": "/s/workflow/manage/",
+      "section": "WORKFLOW",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "jobs_for_me": {
+      "name": "Jobs for me",
+      "url": "/s/workflow/jobs/?quickFilter=todoMe",
+      "section": "WORKFLOW",
+      "quick_access": true,
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  },
+  "connect": {
+    "feed_management": {
+      "name": "Feed Management",
+      "url": "/s/cs-feed-management/feed-management/",
+      "section": "CONNECT",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "superstream_dashboard": {
+      "name": "SuperStream Dashboard",
+      "url": "/s/superstream-rollover/index.html",
+      "section": "CONNECT",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "order_documents": {
+      "name": "Order Documents",
+      "url": "//bgl360.staging.smartersmsf.com",
+      "section": "CONNECT",
+      "external": true,
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "connections": {
+      "name": "Connections",
+      "url": "/s/connection/",
+      "section": "CONNECT",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "lodgement": {
+      "name": "Lodgement",
+      "url": "/s/atolodgement/",
+      "section": "CONNECT",
+      "badge": "new",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "tbar_management": {
+      "name": "TBAR Management",
+      "url": "/s/balancetransfer-global/index.html",
+      "section": "CONNECT",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "bank_feeds_global": {
+      "name": "Bank Feeds Global",
+      "url": "/s/cs-feed-management/feed-management/bank-feeds/",
+      "section": "CONNECT",
+      "quick_access": true,
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "share_data_global": {
+      "name": "Share Data Global",
+      "url": "/s/cs-feed-management/feed-management/share-data/",
+      "section": "CONNECT",
+      "quick_access": true,
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "wraps_and_platforms_global": {
+      "name": "Wraps and Platforms Global",
+      "url": "/s/cs-feed-management/feed-management/wraps-and-platforms/",
+      "section": "CONNECT",
+      "quick_access": true,
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  },
+  "fund": {
+    "fund_dashboard": {
+      "name": "Fund Dashboard",
+      "url": "/s/entity_dashboard/",
+      "section": "FUND",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "fund_details": {
+      "name": "Fund Details",
+      "url": "/s/entity_details/",
+      "section": "FUND",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "fund_relationships": {
+      "name": "Fund Relationships",
+      "url": "/s/entity_relationships/",
+      "section": "FUND",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "fund_transfers": {
+      "name": "Fund Transfers",
+      "url": "/s/fundtrans/index.html",
+      "section": "FUND",
+      "requiresFund": true,
+      "requiresMember": false
+    }
+  },
+  "member": {
+    "member_list": {
+      "name": "Member List",
+      "url": "/s/memberlist/",
+      "section": "MEMBER",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "member_dashboard": {
+      "name": "Member Dashboard",
+      "url": "/s/member_dashboard/",
+      "section": "MEMBER",
+      "badge": "new",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "fund_pension_policies": {
+      "name": "Fund Pension Policies",
+      "url": "/s/actuary/",
+      "section": "MEMBER",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "segregation_dashboard": {
+      "name": "Segregation Dashboard",
+      "url": "/s/segregation/dashboard.html",
+      "section": "MEMBER",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "transfer_balance_dashboard": {
+      "name": "Transfer Balance Dashboard",
+      "url": "/s/balancetransfer/",
+      "section": "MEMBER",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "transfer_balance_dashboard_beta": {
+      "name": "Transfer Balance Dashboard",
+      "url": "/s/balancetransfer-fund/",
+      "section": "MEMBER",
+      "badge": "beta",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "add_accumulation_member": {
+      "name": "Add Accumulation Member",
+      "url": "/s/member_dashboard/?tab=members&addNew=true#personalDetails",
+      "section": "MEMBER",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "add_pension_member": {
+      "name": "Add Pension Member",
+      "url": "/s/member_dashboard/?tab=members&startPension=true#selectAccountDetails",
+      "section": "MEMBER",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "pension_dashboard": {
+      "name": "Pension Dashboard",
+      "url": "/s/member_dashboard/?tab=pensions",
+      "section": "MEMBER",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "contribution_dashboard": {
+      "name": "Contribution Dashboard",
+      "url": "/s/member_dashboard/?tab=contributions",
+      "section": "MEMBER",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": true
+    }
+  },
+  "accounting": {
+    "transaction_list": {
+      "name": "Transaction List",
+      "url": "/s/trans/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "smart_matching": {
+      "name": "Smart Matching",
+      "url": "/s/banking/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "matching_rules": {
+      "name": "Matching Rules",
+      "url": "/s/matchingv2/#ImportRulePlace:?from=tab",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "chart_of_accounts": {
+      "name": "Chart Of Accounts",
+      "url": "/s/chart/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "transaction_recode": {
+      "name": "Transaction Recode",
+      "url": "/s/changeaccount/index.html",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "transaction_recode_new": {
+      "name": "Transaction Recode New",
+      "url": "/s/trans_recode/index.html",
+      "section": "ACCOUNTING",
+      "badge": "beta",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "cgt_register": {
+      "name": "CGT Register",
+      "url": "/s/cgtlist/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "client_query": {
+      "name": "Client Query",
+      "url": "/s/trustee-query-review/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "smart_docs_cgt": {
+      "name": "Smart Docs-CGT",
+      "url": "/s/smart-docs/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "investment_income_generation": {
+      "name": "Investment Income Generation",
+      "url": "/s/invest_income/",
+      "section": "ACCOUNTING",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_bank_account": {
+      "name": "Add Bank Account",
+      "url": "/s/chart/?action=addBank",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_investment": {
+      "name": "Add Investment",
+      "url": "/s/chart/?action=addInvestment",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_property": {
+      "name": "Add Property",
+      "url": "/s/property/?open=yes",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_liability_lrba": {
+      "name": "Add Liability LRBA",
+      "url": "/s/chart/?action=addLiabilityLRBA",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_other_account": {
+      "name": "Add Other Account",
+      "url": "/s/chart/?action=addOther",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_bank_statement": {
+      "name": "Add Bank Statement",
+      "url": "/s/trans/#TransactionEditViewPlace:tt=BankStatement;",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_journal": {
+      "name": "Add Journal",
+      "url": "/s/trans/#TransactionEditViewPlace:tt=GeneralJournal;",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_depreciation": {
+      "name": "Add Depreciation",
+      "url": "/s/trans/#TransactionEditViewPlace:tt=Depreciation;",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "add_corporate_action": {
+      "name": "Add Corporate Action",
+      "url": "/s/corpactionnew/newcorpaction.html?from=translist",
+      "section": "ACCOUNTING",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    }
+  },
+  "investments": {
+    "balance_review": {
+      "name": "Balance Review",
+      "url": "/s/balancereview/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "investment_dashboards": {
+      "name": "Investment Dashboards",
+      "url": "/s/investment/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "investment_security_list": {
+      "name": "Investment Security List",
+      "url": "/s/security-list/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "property_dashboard": {
+      "name": "Property Dashboard",
+      "url": "/s/property/",
+      "section": "INVESTMENTS",
+      "badge": "new",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "foreign_currency": {
+      "name": "Foreign Currency",
+      "url": "/s/foreigncurrency/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "investment_strategy": {
+      "name": "Investment Strategy",
+      "url": "/s/entity/strategy/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "corporate_actions": {
+      "name": "Corporate Actions",
+      "url": "/s/corpactionnew/",
+      "section": "INVESTMENTS",
+      "requiresFund": true,
+      "requiresMember": false
+    }
+  },
+  "compliance": {
+    "distribution_tax_automation": {
+      "name": "Distribution Tax Automation",
+      "url": "/s/distribution_review/",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "period_compliance": {
+      "name": "Period Compliance",
+      "url": "/s/createentries/",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "audit_management": {
+      "name": "Audit Management",
+      "url": "/s/auditor-portal/",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "audit_management_global": {
+      "name": "Audit Management (Global)",
+      "url": "/s/auditor-portal-global/",
+      "section": "COMPLIANCE",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "tax_compliance": {
+      "name": "Tax Compliance",
+      "url": "/s/taxcomplianceviews/MainContent.html",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "bas_ias": {
+      "name": "BAS/IAS",
+      "url": "/s/activitystatement/formlist.html",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "payg_payment_summary": {
+      "name": "PAYG Payment Summary",
+      "url": "/s/payg-super/index.html",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    },
+    "wind_up_wizard": {
+      "name": "Wind Up Wizard",
+      "url": "/s/windup/index.html",
+      "section": "COMPLIANCE",
+      "requiresFund": true,
+      "requiresMember": true
+    }
+  },
+  "reports": {
+    "reports": {
+      "name": "Reports",
+      "url": "/s/report-portal-sf/",
+      "section": "REPORTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "smart_reports": {
+      "name": "Smart Reports",
+      "url": "/s/smart_reports/",
+      "section": "REPORTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "workpapers": {
+      "name": "Workpapers",
+      "url": "/s/working-papers/",
+      "section": "REPORTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "documents": {
+      "name": "Documents",
+      "url": "/s/document/",
+      "section": "REPORTS",
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "consolidated_reporting": {
+      "name": "Consolidated Reporting",
+      "url": "/s/consolidated_reporting/",
+      "section": "REPORTS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "investment_summary": {
+      "name": "Investment Summary",
+      "url": "/d/Reports/fund/InvestmentSummaryNew/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "members_summary": {
+      "name": "Members Summary",
+      "url": "/d/DocxReport/generate/MembersSummaryReport/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "notes_to_financial_statements": {
+      "name": "Notes to the Financial Statements",
+      "url": "/d/DocxReport/generate/NotesToFinancialStatements/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "operating_statement": {
+      "name": "Operating Statement",
+      "url": "/d/Reports/fund/OperatingStatement/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "statement_of_financial_position": {
+      "name": "Statement of Financial Position",
+      "url": "/d/Reports/fund/BalanceSheet/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "statement_of_taxable_income": {
+      "name": "Statement of Taxable Income",
+      "url": "/d/Reports/fund/StatementOfTaxableIncome/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "trial_balance": {
+      "name": "Trial Balance",
+      "url": "/d/Reports/fund/TrialBalance/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    },
+    "investment_movement": {
+      "name": "Investment Movement",
+      "url": "/d/Reports/fund/InvestmentMovement/get/{fundId}.pdf",
+      "section": "REPORTS",
+      "quick_access": true,
+      "requiresFund": true,
+      "requiresMember": false
+    }
+  },
+  "settings": {
+    "badges": {
+      "name": "Badges",
+      "url": "/s/badge-settings/",
+      "section": "SETTINGS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "user_list": {
+      "name": "User List",
+      "url": "https://sso.uat.bgl360.com.au/app/admin/userManager",
+      "section": "SETTINGS",
+      "external": true,
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "user_roles": {
+      "name": "User Roles",
+      "url": "https://sso.uat.bgl360.com.au/app/admin/roleSettings",
+      "section": "SETTINGS",
+      "external": true,
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "contacts": {
+      "name": "Contacts",
+      "url": "/s/contacts/",
+      "section": "SETTINGS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "email_template": {
+      "name": "Email Template",
+      "url": "/s/emailtemplate/",
+      "section": "SETTINGS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "notification": {
+      "name": "Notification",
+      "url": "/s/notification/",
+      "section": "SETTINGS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "lodging_party": {
+      "name": "Lodging Party",
+      "url": "/s/lodging-party/",
+      "section": "SETTINGS",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "invite_new_user": {
+      "name": "Invite New User",
+      "url": "https://sso.uat.bgl360.com.au/app/admin/newInvitations",
+      "section": "SETTINGS",
+      "external": true,
+      "quick_access": true,
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  },
+  "s_admin": {
+    "common_query_data": {
+      "name": "Common Query Data",
+      "url": "/s/commondataview/",
+      "section": "S.ADMIN",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "bank_feeds": {
+      "name": "Bank Feeds",
+      "url": "/s/datafeeds/#BankFeedsAdminListViewPlace:",
+      "section": "S.ADMIN",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "data_feeds_api": {
+      "name": "Data Feeds Api",
+      "url": "/s/superadmin/datafeedsapi/dfIndex.html",
+      "section": "S.ADMIN",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "testing_tools": {
+      "name": "Testing Tools",
+      "url": "/s/adminDashboard/",
+      "section": "S.ADMIN",
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  },
+  "system_data": {
+    "corporate_action_system": {
+      "name": "Corporate Action System",
+      "url": "/s/system-data-management/corporate-action.html",
+      "section": "SYSTEMDATA",
+      "requiresFund": false,
+      "requiresMember": false
+    },
+    "distribution_tax_components": {
+      "name": "Distribution Tax Components",
+      "url": "/s/system-data-management/distribution-tax-components.html",
+      "section": "SYSTEMDATA",
+      "requiresFund": false,
+      "requiresMember": false
+    }
+  }
+}

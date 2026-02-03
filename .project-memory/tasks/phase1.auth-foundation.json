@@ -1,0 +1,170 @@
+{
+  "phase": "Phase 1: Authentication Foundation",
+  "duration": "Week 1",
+  "priority": "Critical",
+  "tasks": [
+    {
+      "id": "P1-001",
+      "title": "Add authentication dependencies",
+      "description": "Add required npm packages for API-based authentication: axios (HTTP client), tough-cookie (cookie jar), http-cookie-agent (axios cookie integration), otplib (TOTP generation), jsonwebtoken (JWT decode), dotenv (environment variables)",
+      "status": "pending",
+      "priority": "critical",
+      "acceptanceCriteria": [
+        "axios ^1.6.0 added to package.json dependencies",
+        "tough-cookie ^4.1.3 added to package.json dependencies",
+        "http-cookie-agent ^5.0.4 added to package.json dependencies",
+        "otplib ^12.0.1 added to package.json dependencies",
+        "jsonwebtoken ^9.0.2 added to package.json dependencies",
+        "dotenv ^16.0.0 added to package.json dependencies",
+        "npm install runs without errors"
+      ],
+      "dependencies": [],
+      "specReference": "package.json",
+      "complexity": "simple",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-002",
+      "title": "Implement Cognito JWT authentication",
+      "description": "Create authenticateWithCognito() function that handles AWS Cognito authentication with TOTP 2FA. Flow: InitiateAuth (username/password) → Generate TOTP code → RespondToAuthChallenge → Return JWT IdToken",
+      "status": "pending",
+      "priority": "critical",
+      "acceptanceCriteria": [
+        "authenticateWithCognito() function implemented in templates/helpers/auth-cognito.js",
+        "Handles InitiateAuth with USER_PASSWORD_AUTH flow",
+        "Generates TOTP code using otplib.authenticator",
+        "Handles RespondToAuthChallenge with SOFTWARE_TOKEN_MFA",
+        "Returns valid JWT IdToken",
+        "Handles all Cognito error types (NotAuthorizedException, CodeMismatchException, ExpiredCodeException, etc.)",
+        "Logs authentication progress",
+        "Function exported for use in other modules"
+      ],
+      "dependencies": ["P1-001"],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-cognito.md",
+      "complexity": "complex",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-003",
+      "title": "Implement JWT token caching",
+      "description": "Create getCognitoToken() wrapper with file-based token caching (.sf360-token-cache). Cache tokens for 1 hour with JWT decode validation. Include warmupCache() and clearCache() helpers.",
+      "status": "pending",
+      "priority": "critical",
+      "acceptanceCriteria": [
+        "getCognitoToken() function implemented in templates/helpers/auth-token-cache.js",
+        "Checks .sf360-token-cache file for existing token",
+        "Validates token with isTokenValid() using jsonwebtoken.decode",
+        "Checks token expiry with 1-minute buffer",
+        "Reuses valid cached token (logs time remaining)",
+        "Gets new token if cache miss or expired",
+        "Writes new token to .sf360-token-cache file",
+        "warmupCache() static method implemented",
+        "clearCache() static method implemented",
+        "Graceful degradation if file operations fail"
+      ],
+      "dependencies": ["P1-002"],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-token-caching.md",
+      "complexity": "moderate",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-004",
+      "title": "Implement SSO login and cookie extraction",
+      "description": "Create loginToSSO() function that authenticates with SF360 SSO using JWT token, selects firm, and extracts cookies in Playwright format. Uses tough-cookie jar with axios.",
+      "status": "pending",
+      "priority": "critical",
+      "acceptanceCriteria": [
+        "loginToSSO() function implemented in templates/helpers/auth-sso-login.js",
+        "Creates axios instance with tough-cookie jar",
+        "POST /login_token_check with JWT Bearer token",
+        "GET /selectfirm with firm parameter",
+        "Extracts cookies from cookie jar",
+        "Formats cookies for Playwright (handles expires, sameSite)",
+        "Returns array of Playwright-compatible cookies",
+        "Memory cache for SSO sessions (30 min expiry)",
+        "Handles invalid JWT and invalid firm errors",
+        "Logs SSO login progress"
+      ],
+      "dependencies": ["P1-002"],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-sso-login.md",
+      "complexity": "complex",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-005",
+      "title": "Create test data factory module",
+      "description": "Create data-factory.js with functions to generate unique test data: contacts, funds, members, TFN, ABN, dates. Uses timestamp + random for uniqueness.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "generateContactData() function generates unique person data with timestamp",
+        "generateFundData() function generates unique fund names",
+        "generateMemberData() function wraps generateContactData with 'Member' prefix",
+        "generateTFN() generates 9-digit TFN",
+        "generateABN() generates 11-digit ABN",
+        "generateDateOfBirth() generates dates within age range (default 18-80)",
+        "All functions support overrides parameter",
+        "All functions return ready-to-use data objects",
+        "File created at templates/helpers/data-factory.js",
+        "All functions exported"
+      ],
+      "dependencies": [],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-data-factory.md",
+      "complexity": "simple",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-006",
+      "title": "Update environment template",
+      "description": "Update .env.template to include all required configuration for Cognito JWT auth, SSO login, and SF360 server access.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "COGNITO_URL added with example value",
+        "COGNITO_CLIENT_ID added with placeholder",
+        "SSO_URL added with example value",
+        "SF360_SERVER_URL added (base URL for SF360)",
+        "USERNAME added with example",
+        "USER_PASSWORD added with placeholder",
+        "TOTP_SECRET added with example (base32 format)",
+        "UID added with example",
+        "FIRM added with example",
+        "Comments explain each variable",
+        "File location: templates/.env.template"
+      ],
+      "dependencies": [],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-flow-analysis.md",
+      "complexity": "simple",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P1-007",
+      "title": "Add token cache to gitignore",
+      "description": "Add .sf360-token-cache to .gitignore to prevent committing JWT tokens to version control.",
+      "status": "pending",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        ".sf360-token-cache added to .gitignore",
+        "Entry includes comment explaining it's for JWT token caching"
+      ],
+      "dependencies": [],
+      "specReference": ".project-memory/specs/test-fixture-factory/active.auth-token-caching.md",
+      "complexity": "simple",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    }
+  ]
+}

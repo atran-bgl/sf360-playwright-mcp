@@ -1,0 +1,24 @@
+node_modules/
+test-results/
+playwright-report/
+playwright/.cache/
+screenshots/*.png
+*.log
+.DS_Store
+.env
+package-lock.json
+yarn.lock
+
+# SF360 Playwright MCP - JWT token cache (never commit tokens)
+.sf360-token-cache
+
+# Temporary session data (authenticated cookies)
+tmp/
+exploration-context.json
+
+# MCP Server compiled output
+.playwright-test-mcp/mcp-server/dist/
+.playwright-test-mcp/mcp-server/node_modules/
+
+# Keep source files
+!.playwright-test-mcp/mcp-server/src/

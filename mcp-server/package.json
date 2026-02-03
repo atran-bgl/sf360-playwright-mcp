@@ -1,0 +1,26 @@
+{
+  "name": "sf360-playwright-mcp",
+  "version": "0.2.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "watch": "tsc --watch"
+  },
+  "bin": {
+    "sf360-playwright-mcp": "./dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "overrides": {
+    "hono": "4.11.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

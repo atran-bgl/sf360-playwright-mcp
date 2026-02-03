@@ -1,0 +1,52 @@
+{
+	"testFileOrFolder": "test/data/testData/Tina/RunEveryday/Fund-8/Email1/RTR_In_Received.json",
+	"environment": "uat",
+	"userIdToken": true,
+	"userCredentials": {
+		"uat": {
+			"username": "atran@bglcorp.com.au",
+			"userPassword": "Gm1hqMq$yAV7D4j3",
+			"userSecret": "HCUKFR6ICCOATT7UFSAA2YUJPYUYXSU62DPQTBWFZBUFMYSH4YFQ",
+			"uid": 518,
+			"firm1": "tinabgl",
+			"firm8": "superstreamrolloverc",
+			"firm3": "superstreamrolloverc",
+			"firm4": "anna021",
+			"firm": "superstreamrolloverc",
+			"firm5": "anna150821",
+			"firm7": "ericuattesting",
+			"dbHostSR": "dbproxy.uat.tools.bgl360.com.au",
+			"dbPortSR": "33312",
+			"deleteRolloverMessages": {
+				"fund": "8ad08a2782c3397c0182c3829e4f0008",
+				"forArchive": false
+			}
+		},
+		"production": {
+			"username": "atran@bglcorp.com.au",
+			"userPassword": "RHw^*8GQXts931XCUrf",
+			"userSecret": "YKOJIVLFOJ74BDMKQKVUUZOY7DSCI4LLQASRMLNPSIDNZDM36UEA",
+			"uid": 3352,
+			"firm": "annalive001",
+			"dbHost": "dbproxy.production.tools.bglcorp.com.au",
+			"dbPort": "33306",
+			"contributionMessageateDate": "2023-05-18",
+			"dbUserName": "atran",
+			"dbUserPassword": "c4fb6019a24d4d49e1449f4b1db4cced"
+		},
+		"staging": {
+			"username": "atran+staging@bglcorp.com.au",
+			"userPassword": "Home@1234",
+			"userSecret": "7FIXUQ53KLLOITH3L7FFILSPF2UJPGPGXQAFE77QTW76GUCSY6XA",
+			"uid": 5990,
+			"firm": "sf360test"
+		},
+		"uat2": {
+			"username": "atran@bglcorp.com.au",
+			"userPassword": "K5y4C63Z!aTF",
+			"userSecret": "QOTXUPNIGYBV6CWJRPHT4KLXEIGBQJDILF7TDT2FZFQJW3662NKQ",
+			"uid": 518,
+			"firm": "sf360test"
+		}
+	}
+}

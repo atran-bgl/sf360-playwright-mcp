@@ -1,0 +1,62 @@
+{
+  "phase": "Phase 6: Release",
+  "duration": "Week 6",
+  "priority": "Medium",
+  "tasks": [
+    {
+      "id": "P6-001",
+      "title": "Prepare release package",
+      "description": "BREAKING CHANGE RELEASE: Prepare version 1.0.0 with complete removal of UI-based login() function. Update CHANGELOG with breaking changes section.",
+      "status": "pending",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        "CHANGELOG.md updated with BREAKING CHANGES section at top",
+        "Version confirmed as 1.0.0 (major version bump)",
+        "Breaking changes clearly documented: login() function REMOVED",
+        "Migration guide reviewed and finalized (MIGRATION.md)",
+        "All references to old login() removed from examples",
+        "All tests passing (unit, integration, E2E)",
+        "Documentation reviewed and complete",
+        "package.json version field set to 1.0.0",
+        "Git tag prepared: v1.0.0",
+        "Release notes emphasize breaking changes first",
+        "Rollback instructions documented (how to use 0.2.x if needed)"
+      ],
+      "dependencies": ["P5-001", "P5-002", "P5-003", "P5-004"],
+      "specReference": "N/A",
+      "complexity": "moderate",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T12:30:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P6-002",
+      "title": "Build and publish",
+      "description": "BREAKING CHANGE RELEASE: Publish version 1.0.0 to npm with prominent breaking change warnings. Announce with migration guide.",
+      "status": "pending",
+      "priority": "medium",
+      "acceptanceCriteria": [
+        "MCP server builds successfully (npm run build)",
+        "mcp-server/dist/ contains compiled JavaScript",
+        "npm package builds successfully",
+        "Package published to npm registry as version 1.0.0",
+        "GitHub release created with tag v1.0.0",
+        "Release notes START with BREAKING CHANGES section",
+        "Release notes include migration guide link prominently",
+        "Announcement prepared for users with BREAKING CHANGE warning",
+        "Announcement emphasizes: login() function removed, setupTest() required",
+        "Announcement includes benefits (5x faster, auto fixtures, caching)",
+        "Post-release verification: package installs correctly",
+        "Post-release verification: MCP server works in Claude",
+        "Post-release verification: setupTest() works as expected",
+        "Documentation for 0.2.x archived/tagged for rollback reference"
+      ],
+      "dependencies": ["P6-001"],
+      "specReference": "N/A",
+      "complexity": "moderate",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T12:30:00Z",
+      "completedAt": null
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+{
+  "pageKey": "superstream_dashboard",
+  "pageName": "SuperStream Dashboard",
+  "pageUrl": "/s/superstream-rollover/index.html",
+  "fullUrl": "https://uat.sf360.com.au/s/superstream-rollover/index.html?firm=sf360test&uid=518",
+  "section": "CONNECT",
+  "discoveredAt": "2026-02-02T23:52:57.995Z",
+  "requiresFund": false,
+  "requiresMember": false,
+  "testData": {},
+  "elements": [
+    {
+      "id": "switch-to-old-page-link",
+      "type": "link",
+      "label": "Switch to old page",
+      "action": "navigate",
+      "url": "/s/entity/superstream/index.html",
+      "selectors": {
+        "ref": "e16",
+        "text": "Switch to old page"
+      },
+      "notes": "Links to legacy SuperStream page"
+    },
+    {
+      "id": "register-button",
+      "type": "button",
+      "label": "Register",
+      "disabled": true,
+      "action": "register_fund",
+      "selectors": {
+        "ref": "e22",
+        "role": "button",
+        "text": "Register"
+      },
+      "notes": "Disabled when no fund selected"
+    },
+    {
+      "id": "change-esa-button",
+      "type": "button",
+      "label": "Change ESA",
+      "disabled": true,
+      "action": "change_esa",
+      "selectors": {
+        "ref": "e23",
+        "role": "button",
+        "text": "Change ESA"
+      },
+      "notes": "Disabled when no fund selected"
+    },
+    {
+      "id": "email-notification-button",
+      "type": "button",
+      "label": "Email Notification",
+      "action": "send_notification",
+      "selectors": {
+        "ref": "e25",
+        "role": "button",
+        "text": "Email Notification"
+      },
+      "notes": "Opens email notification dialog"
+    },
+    {
+      "id": "cancel-button",
+      "type": "button",
+      "label": "Cancel",
+      "disabled": true,
+      "action": "cancel_transaction",
+      "selectors": {
+        "ref": "e29",
+        "role": "button",
+        "text": "Cancel"
+      },
+      "notes": "Disabled when no transaction selected"
+    },
+    {
+      "id": "export-button",
+      "type": "button",
+      "label": "Export",
+      "action": "export_data",
+      "selectors": {
+        "ref": "e31",
+        "role": "button",
+        "text": "Export"
+      },
+      "notes": "Opens export options dropdown"
+    },
+    {
+      "id": "search-input",
+      "type": "textbox",
+      "dataType": "string",
+      "label": "Search by Fund name / ABN / External party",
+      "placeholder": "Search by Fund name / ABN / External party",
+      "required": false,
+      "selectors": {
+        "ref": "e37",
+        "role": "textbox"
+      },
+      "notes": "Filters table results by fund name, ABN, or external party"
+    },
+    {
+      "id": "search-clear-button",
+      "type": "button",
+      "label": "Clear search",
+      "action": "clear_search",
+      "selectors": {
+        "ref": "e39",
+        "role": "button"
+      },
+      "notes": "Clears search input"
+    },
+    {
+      "id": "action-required-tab",
+      "type": "tab",
+      "label": "Action Required (21)",
+      "active": true,
+      "selectors": {
+        "ref": "e45",
+        "role": "link",
+        "text": "Action Required (21)"
+      },
+      "notes": "Shows funds with outstanding transactions"
+    },
+    {
+      "id": "all-funds-tab",
+      "type": "tab",
+      "label": "All Funds (16524)",
+      "active": false,
+      "selectors": {
+        "ref": "e47",
+        "role": "link",
+        "text": "All Funds (16524)"
+      },
+      "notes": "Shows all funds with SuperStream activity"
+    },
+    {
+      "id": "table-fund-code-column",
+      "type": "columnheader",
+      "label": "Fund Code",
+      "sortable": false,
+      "selectors": {
+        "ref": "e58",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-fund-name-column",
+      "type": "columnheader",
+      "label": "Fund Name",
+      "sortable": false,
+      "selectors": {
+        "ref": "e59",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-abn-column",
+      "type": "columnheader",
+      "label": "ABN",
+      "sortable": false,
+      "selectors": {
+        "ref": "e60",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-esa-column",
+      "type": "columnheader",
+      "label": "ESA",
+      "sortable": true,
+      "selectors": {
+        "ref": "e61",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-member-column",
+      "type": "columnheader",
+      "label": "Member",
+      "sortable": false,
+      "selectors": {
+        "ref": "e66",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-total-amount-column",
+      "type": "columnheader",
+      "label": "Total Amount",
+      "sortable": true,
+      "dataType": "number",
+      "selectors": {
+        "ref": "e67",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-last-update-column",
+      "type": "columnheader",
+      "label": "Last Update",
+      "sortable": true,
+      "dataType": "date",
+      "selectors": {
+        "ref": "e70",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-transaction-type-column",
+      "type": "columnheader",
+      "label": "Transaction Type",
+      "sortable": true,
+      "dataType": "enum",
+      "selectors": {
+        "ref": "e73",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-days-outstanding-column",
+      "type": "columnheader",
+      "label": "Days Outstanding",
+      "sortable": true,
+      "dataType": "number",
+      "selectors": {
+        "ref": "e76",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-transaction-status-column",
+      "type": "columnheader",
+      "label": "Transaction Status",
+      "sortable": true,
+      "dataType": "enum",
+      "selectors": {
+        "ref": "e79",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "table-external-party-column",
+      "type": "columnheader",
+      "label": "External Party",
+      "sortable": false,
+      "selectors": {
+        "ref": "e82",
+        "role": "columnheader"
+      }
+    },
+    {
+      "id": "fund-name-link-template",
+      "type": "link",
+      "label": "Fund Name Link",
+      "action": "navigate_to_fund",
+      "selectors": {
+        "role": "link",
+        "css": "td a[href*='fundView/rollovers']"
+      },
+      "notes": "Each fund row has a link to its fund view page. Pattern: /s/superstream-rollover/index.html/fundView/rollovers?firm=sf360test&uid=518&mid={memberId}"
+    },
+    {
+      "id": "expand-button-template",
+      "type": "button",
+      "label": "Expand {count}",
+      "action": "expand_transactions",
+      "selectors": {
+        "role": "button",
+        "text": "Expand"
+      },
+      "notes": "Each fund row has an expand button showing number of transactions. Clicking expands to show transaction details."
+    },
+    {
+      "id": "select-entity-button",
+      "type": "button",
+      "label": "Select an Entity",
+      "action": "open_entity_selector",
+      "selectors": {
+        "ref": "e783",
+        "role": "button",
+        "text": "Select an Entity"
+      },
+      "notes": "Opens entity selection dialog"
+    },
+    {
+      "id": "global-search-button",
+      "type": "button",
+      "label": "Start search for anything ...",
+      "action": "open_global_search",
+      "selectors": {
+        "ref": "e789",
+        "role": "button"
+      },
+      "notes": "Opens global search across all entities"
+    },
+    {
+      "id": "help-link",
+      "type": "link",
+      "label": "Help",
+      "action": "open_help",
+      "selectors": {
+        "ref": "e795",
+        "role": "link",
+        "text": "Help"
+      }
+    },
+    {
+      "id": "notification-icon",
+      "type": "button",
+      "label": "Notification",
+      "action": "view_notifications",
+      "selectors": {
+        "ref": "e799",
+        "role": "generic"
+      },
+      "notes": "Opens notification panel"
+    },
+    {
+      "id": "live-chat-button",
+      "type": "button",
+      "label": "Live Chat",
+      "action": "open_live_chat",
+      "selectors": {
+        "ref": "e802",
+        "role": "generic"
+      },
+      "notes": "Opens live chat window"
+    },
+    {
+      "id": "log-support-call-button",
+      "type": "button",
+      "label": "Log support call",
+      "action": "log_support_call",
+      "selectors": {
+        "ref": "e806",
+        "role": "generic"
+      },
+      "notes": "Opens support call logging form"
+    },
+    {
+      "id": "sign-out-button",
+      "type": "button",
+      "label": "Sign out",
+      "action": "sign_out",
+      "selectors": {
+        "ref": "e809",
+        "role": "generic"
+      },
+      "notes": "Logs out current user"
+    },
+    {
+      "id": "app-switcher-link",
+      "type": "link",
+      "label": "App switcher",
+      "action": "switch_app",
+      "selectors": {
+        "ref": "e813",
+        "role": "link",
+        "text": "App switcher"
+      },
+      "notes": "Opens app switcher menu"
+    },
+    {
+      "id": "user-profile-link",
+      "type": "link",
+      "label": "Anna Tran",
+      "action": "view_profile",
+      "url": "https://sso.uat.bgl360.com.au/app/user/profile",
+      "selectors": {
+        "ref": "e816",
+        "role": "link",
+        "text": "Anna Tran"
+      },
+      "notes": "Links to user profile page. Label changes based on logged-in user."
+    },
+    {
+      "id": "provide-feedback-button",
+      "type": "button",
+      "label": "Provide Feedback",
+      "action": "open_feedback_form",
+      "selectors": {
+        "ref": "e612",
+        "text": "Provide Feedback"
+      },
+      "notes": "Opens feedback form dialog"
+    }
+  ],
+  "sections": [
+    {
+      "name": "Header Actions",
+      "elements": [
+        "register-button",
+        "change-esa-button",
+        "email-notification-button",
+        "cancel-button",
+        "export-button"
+      ]
+    },
+    {
+      "name": "Search & Filter",
+      "elements": [
+        "search-input",
+        "search-clear-button"
+      ]
+    },
+    {
+      "name": "Tabs",
+      "elements": [
+        "action-required-tab",
+        "all-funds-tab"
+      ]
+    },
+    {
+      "name": "Table",
+      "elements": [
+        "table-fund-code-column",
+        "table-fund-name-column",
+        "table-abn-column",
+        "table-esa-column",
+        "table-member-column",
+        "table-total-amount-column",
+        "table-last-update-column",
+        "table-transaction-type-column",
+        "table-days-outstanding-column",
+        "table-transaction-status-column",
+        "table-external-party-column",
+        "fund-name-link-template",
+        "expand-button-template"
+      ]
+    },
+    {
+      "name": "Top Navigation",
+      "elements": [
+        "select-entity-button",
+        "global-search-button",
+        "help-link",
+        "notification-icon",
+        "live-chat-button",
+        "log-support-call-button",
+        "sign-out-button",
+        "app-switcher-link",
+        "user-profile-link"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "Search Funds",
+      "trigger": "search-input",
+      "requiredFields": ["search-input"],
+      "expectedOutcome": "Table filters to show matching funds by name, ABN, or external party"
+    },
+    {
+      "name": "Export Data",
+      "trigger": "export-button",
+      "expectedOutcome": "Opens dropdown with export options (CSV, Excel, etc.)"
+    },
+    {
+      "name": "Send Email Notification",
+      "trigger": "email-notification-button",
+      "expectedOutcome": "Opens email notification dialog"
+    },
+    {
+      "name": "Switch to All Funds View",
+      "trigger": "all-funds-tab",
+      "expectedOutcome": "Table shows all funds (16524 total) instead of just action required"
+    },
+    {
+      "name": "View Fund Details",
+      "trigger": "fund-name-link-template",
+      "expectedOutcome": "Navigate to fund-specific SuperStream rollover page"
+    },
+    {
+      "name": "Expand Transaction Details",
+      "trigger": "expand-button-template",
+      "expectedOutcome": "Row expands to show member-level transaction details"
+    }
+  ],
+  "screenshots": [
+    "screenshot/main.png"
+  ],
+  "notes": [
+    "Warning message displayed: 'There are funds with outstanding Rollover / Release Authority transactions that require attention.'",
+    "Action Required tab shows 21 funds with outstanding transactions",
+    "All Funds tab shows 16,524 total funds",
+    "Register and Change ESA buttons are disabled when no fund is selected",
+    "Cancel button is disabled when no transaction is selected",
+    "Table columns ESA, Total Amount, Last Update, Transaction Type, Days Outstanding, and Transaction Status are sortable",
+    "Each fund row can be expanded to show individual member transactions",
+    "Fund names are clickable links to fund-specific SuperStream page",
+    "Left navigation menu is collapsed by default",
+    "Page uses React (accessibility snapshot was empty as expected)"
+  ]
+}

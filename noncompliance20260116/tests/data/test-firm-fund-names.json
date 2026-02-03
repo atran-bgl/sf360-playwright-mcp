@@ -1,0 +1,172 @@
+{
+  "firms": {
+    "firm1": {
+      "environment": "uat",
+      "shortFirmName": "richardpostfirm",
+      "fullFirmName": "Richard Post Firm",
+      "funds": {
+        "fund1": {
+          "fundId": "8ad08a3b6579f8ef01657a16e8280001",
+          "fundName": "Transaction Test 1 Fund"
+        },
+        "fund2": {
+          "fundId": "8ad08a1e6ea62224016ea63313ad000d",
+          "fundName": "UI Test Fund"
+        },
+        "fund3": {
+          "fundId": "8ad08a2f70756c2f01707597e4fe0009",
+          "fundName": "UI Test Fund (do not edit)"
+        },
+        "fund4": {
+          "fundId": "8ad08a1f813c53ed01813c5927420006",
+          "fundName": "Regression Tests (Don Not Edit)"
+        },
+        "fund5": {
+          "fundId": "8a8bc49f889413c40188942462720056",
+          "fundName": "500 error filter option(do not edit)"
+        }
+      }
+    },
+    "firm2": {
+      "environment": "uat",
+      "shortFirmName": "automochatestfirm1",
+      "fullFirmName": "Auto Mocha Test Firm 1",
+      "funds": {}
+    },
+    "firm3": {
+      "environment": "uat",
+      "shortFirmName": "sf360test",
+      "fullFirmName": "sf360test",
+      "funds": {
+        "fund1": {
+          "fundId": "8a009e6b44cde7000144ce4c74b00032",
+          "fundName": "Krish BGL Training Fund"
+        },
+        "fund2": {
+          "fundId": "8ad08ada6bafebb4016bb00d78b60001",
+          "fundName": ""
+        }
+      }
+    },
+    "firm4": {
+      "environment": "uat",
+      "shortFirmName": "tina2",
+      "fullFirmName": "Tina2",
+      "funds": {}
+    },
+    "firm5": {
+      "environment": "uat",
+      "shortFirmName": "tinabgl",
+      "fullFirmName": "Tina BGL",
+      "funds": {
+        "fund1": {
+          "fundId": "8ad08aac74d32bfe0174d3315c230006",
+          "fundName": "UI Test Fund"
+        },
+        "fund2": {
+          "fundId": "8ad08ade79d5f09f0179d62d093b003a",
+          "fundName": "BGL Training Fund"
+        },
+        "fund3": {
+          "fundId": "8ad08a0978d3beef0178d42288f10051",
+          "fundName": "Other Gain - Single Parcel - Trust"
+        },
+        "fund4": {
+          "fundId": "8ad08ab478d4296d0178d5290a15002a",
+          "fundName": "Other Gain - Single Parcel-MTE- Company"
+        },
+        "fund5": {
+          "fundId": "8a8bdf078aaa7252018aaaf22ffb0040",
+          "fundName": "Anna Distribution Review - Accrual Automation DO NOT EDIT"
+        },
+        "fund6": {
+          "fundId": "8a8beb438af8068e018af813cc230006",
+          "fundName": "fund for new investment security list page"
+        },
+        "fund7": {
+          "fundId": "8a8bcf8792fe8ff20192fe9c86170007",
+          "fundName": "check overnight security prices - do not edit"
+        },
+        "fund8": {
+          "fundId": "8a8beef193ae8ae50193ae8bfb710001",
+          "fundName": "fund for new investment security list page 2 - do not edit"
+        }
+      }
+    },
+    "firm6": {
+      "environment": "production",
+      "shortFirmName": "sf360test",
+      "fullFirmName": "sf360test",
+      "funds": {
+        "fund1": {
+          "fundId": "8a348be764d5892c0164d591d4ff0002",
+          "fundName": "Anna Corporate Action"
+        }
+      }
+    },
+    "firm7": {
+      "environment": "production",
+      "shortFirmName": "tinabgl",
+      "fullFirmName": "Tina BGL Test",
+      "funds": {
+        "fund1": {
+          "fundId": "8a348b3771397058017139d7e268002e",
+          "fundName": "BGL Training Fund"
+        },
+        "fund2": {
+          "fundId": "8aefe2319366497201936674ac580007",
+          "fundName": "check overnight security prices - do not edit"
+        }
+      }
+    },
+    "firm8": {
+      "environment": "staging",
+      "shortFirmName": "tinabgl",
+      "fullFirmName": "tinabgl",
+      "funds": {
+        "fund1": {
+          "fundId": "8ad08b9973ffd6f9017400094b170059",
+          "fundName": "BGL Training Fund"
+        }
+      }
+    },
+    "firm9": {
+      "environment": "uat",
+      "shortFirmName": "superstreamrolloverc",
+      "fullFirmName": "SuperStream Rollover Conformance Test",
+      "funds": {}
+    },
+    "firm10": {
+      "environment": "uat",
+      "shortFirmName": "tinasfsi4",
+      "fullFirmName": "tinasfsi4",
+      "funds": {
+        "fund1": {
+          "fundId": "8ad08af478489ec3017848aca6800011",
+          "fundName": "testFund1"
+        },
+        "fund2": {
+          "fundId": "8a8bd32d896b9b1c01896ba8ef50000a",
+          "fundName": "testFund2"
+        }
+      }
+    },
+    "firm11": {
+      "environment": "staging",
+      "shortFirmName": "hansenmega",
+      "fullFirmName": "hansenmega",
+      "funds": {
+        "fund1": {
+          "fundId": "8a009e0d51ad9fc00151ae242c8f0009",
+          "fundName": "BGL Test"
+        }
+      }
+    },
+    "firm12": {
+      "environment": "uat",
+      "shortFirmName": "tinabgl1",
+      "fullFirmName": "tinabgl1",
+      "funds": {}
+    }
+  }
+}

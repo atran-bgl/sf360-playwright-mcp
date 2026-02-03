@@ -1,0 +1,14 @@
+{
+  "pageKey": "fund_dashboard",
+  "pageName": "Fund Dashboard",
+  "pageUrl": "/s/entity_dashboard/",
+  "fullUrl": "https://uat.sf360.com.au/s/entity_dashboard/?firm=sf360test&uid=518&mid=8a8bede39c1d1f85019c208e252b052c",
+  "section": "FUND",
+  "requiresFund": true,
+  "requiresMember": false,
+  "discoveredAt": "2026-02-02T22:52:09.467Z",
+  "testData": {
+    "fundId": "8a8bede39c1d1f85019c208e252b052c",
+    "fundName": "AutoTest SMSF 1770072711792"
+  }
+}

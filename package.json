@@ -1,0 +1,58 @@
+{
+  "name": "@bgl/sf360-playwright-mcp",
+  "version": "1.0.0",
+  "description": "MCP server and API-based authentication for SF360 Playwright testing with auto-fixtures and token caching",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "bin": {
+    "sf360-mcp-init": "./bin/init.js"
+  },
+  "scripts": {
+    "postinstall": "node bin/postinstall.js",
+    "build": "cd mcp-server && npm install && npm run build",
+    "test": "echo 'No tests defined yet'",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "templates/",
+    "mcp-server/dist/",
+    "mcp-server/package.json",
+    "bin/"
+  ],
+  "keywords": [
+    "playwright",
+    "sf360",
+    "testing",
+    "e2e",
+    "mcp",
+    "authentication",
+    "totp",
+    "api",
+    "cognito",
+    "jwt",
+    "sso",
+    "fixtures",
+    "aws"
+  ],
+  "author": "BGL",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgl/sf360-playwright-mcp.git"
+  },
+  "peerDependencies": {
+    "@playwright/test": "^1.40.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ssm": "^3.840.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.0",
+    "http-cookie-agent": "^5.0.4",
+    "jsonwebtoken": "^9.0.2",
+    "otplib": "^12.0.1",
+    "tough-cookie": "^4.1.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

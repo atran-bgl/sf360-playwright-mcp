@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(node /Users/atran/SFsourceCode/sf360-test-project/node_modules/@bgl/sf360-playwright-mcp/mcp-server/dist/index.js:*)",
+      "Bash(grep:*)",
+      "Bash(test:*)",
+      "mcp__project-memory__get-task-schema",
+      "mcp__project-memory__get-new-parse-tasks-prompt",
+      "mcp__project-memory__get-new-review-prompt",
+      "mcp__project-memory__get-new-sync-prompt",
+      "mcp__project-memory__get-new-create-spec-prompt",
+      "mcp__project-memory__get-new-implement-feature-prompt",
+      "mcp__project-memory__get-new-self-reflect-prompt",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_run_code",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_snapshot",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_evaluate",
+      "mcp__playwright__browser_press_key"
+    ]
+  }
+}

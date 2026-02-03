@@ -1,0 +1,112 @@
+{
+  "phase": "Phase 5: Testing & Validation",
+  "duration": "Week 5",
+  "priority": "High",
+  "tasks": [
+    {
+      "id": "P5-001",
+      "title": "Write unit tests for auth functions",
+      "description": "Create unit tests for all authentication functions: getCognitoToken(), loginToSSO(), cookie formatting, and all data factory functions.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "Unit tests for getCognitoToken() (cache hit, cache miss, token expired)",
+        "Unit tests for authenticateWithCognito() (success, invalid credentials, invalid TOTP)",
+        "Unit tests for loginToSSO() (success, invalid JWT, invalid firm)",
+        "Unit tests for cookie formatting (expires handling, sameSite handling)",
+        "Unit tests for generateContactData() (unique names, overrides work)",
+        "Unit tests for generateFundData() (unique names, entity types)",
+        "Unit tests for generateMemberData() (wraps contact data correctly)",
+        "Unit tests for generateTFN() and generateABN() (correct format)",
+        "Unit tests for generateDateOfBirth() (age range validation)",
+        "All tests use mocking for axios calls",
+        "Tests located in tests/ or test/ directory",
+        "Tests run with npm test"
+      ],
+      "dependencies": ["P1-002", "P1-003", "P1-004", "P1-005"],
+      "specReference": ".project-memory/specs/test-fixture-factory/",
+      "complexity": "complex",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P5-002",
+      "title": "Write integration tests for fixtures",
+      "description": "Create integration tests for fund creation, member creation, and setupTest() with various configurations.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "Integration test for full auth flow (Cognito → SSO → Playwright cookies)",
+        "Integration test for createFund() (creates SMSF, returns fundId)",
+        "Integration test for createMember() (3-step process, returns memberId and memberCode)",
+        "Integration test for setupTest() with requiresFund: true",
+        "Integration test for setupTest() with requiresMember: true",
+        "Integration test for setupTest() auto-detection from pageKey",
+        "Integration test for token caching (second call faster)",
+        "Integration test for SSO session caching",
+        "Tests use real SF360 UAT environment or mocked API",
+        "Tests clean up created resources if using real environment",
+        "Tests run with npm run test:integration or similar"
+      ],
+      "dependencies": ["P2-001", "P2-002", "P2-003"],
+      "specReference": ".project-memory/specs/test-fixture-factory/",
+      "complexity": "complex",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P5-003",
+      "title": "Write E2E tests for MCP tools",
+      "description": "Create end-to-end tests for all 4 MCP tools and the complete workflow from user request to passing test.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "E2E test for sf360-test-plan tool (generates valid plan JSON)",
+        "E2E test for sf360-test-generate tool (generates valid test file from plan)",
+        "E2E test for sf360-test-evaluate tool (runs test, applies fixes)",
+        "E2E test for sf360-test-report tool (generates report markdown)",
+        "E2E test for full workflow (user spec → plan → test → evaluate → report)",
+        "Tests verify intermediate file artifacts exist",
+        "Tests verify test file runs successfully",
+        "Tests verify report contains expected sections",
+        "Tests can run against MCP server",
+        "Tests documented and automated"
+      ],
+      "dependencies": ["P3-001", "P3-002", "P3-003", "P3-004", "P3-005"],
+      "specReference": ".project-memory/specs/mcp-tool-based-test-generation/",
+      "complexity": "complex",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    },
+    {
+      "id": "P5-004",
+      "title": "Update documentation",
+      "description": "Update all user-facing documentation with API-based auth, setupTest() usage, and migration guide from UI-based to API-based auth.",
+      "status": "pending",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "README.md updated with API-based auth examples",
+        "README.md updated with setupTest() usage examples",
+        "README.md shows auto-detection from pageKey",
+        "INSTALLATION.md updated with Cognito/SSO configuration",
+        "INSTALLATION.md includes .env setup with all required variables",
+        "setupTest() API contract documented (parameters, return value)",
+        "Test data factory functions documented",
+        "Migration guide created (UI-based → API-based auth)",
+        "Migration guide includes breaking changes",
+        "Migration guide includes code examples",
+        "CHANGELOG.md updated with new features",
+        "All examples use correct import paths"
+      ],
+      "dependencies": ["P2-003"],
+      "specReference": "N/A",
+      "complexity": "moderate",
+      "createdAt": "2026-02-02T00:00:00Z",
+      "updatedAt": "2026-02-02T00:00:00Z",
+      "completedAt": null
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "environment": "uat",
+  "uat": {
+    "username": "twang+test@bglcorp.com.au",
+    "userPassword": "xxxxx",
+    "userSecret": "xxxxx",
+    "uid": 1234
+  }
+}

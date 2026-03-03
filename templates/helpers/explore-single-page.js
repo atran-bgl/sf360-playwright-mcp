@@ -36,14 +36,8 @@ function validateExistingSession(sessionPath, pageInfo) {
     return { valid: false, reason: 'Session expired' };
   }
 
-  // Check if session has required test data
-  if (pageInfo.requiresFund && !session.fundId) {
-    return { valid: false, reason: 'Page requires fund but session has no fund' };
-  }
-
-  if (pageInfo.requiresMember && !session.memberId) {
-    return { valid: false, reason: 'Page requires member but session has no member' };
-  }
+  // Session is valid if cookies haven't expired
+  // setupTest will create fund/member if needed
 
   // Calculate remaining time
   const remainingMs = expiresAt - now;
@@ -122,54 +116,92 @@ async function exploreSinglePage(pageKey, options = {}) {
     const page = await context.newPage();
 
     // 3. Authenticate or restore session
-    if (!sessionReused) {
-      const authStepNum = stepNum + 1;
-      console.log(`━━━ Step ${authStepNum}: Authenticating ━━━\n`);
+    const authStepNum = stepNum + 1;
+    console.log(`━━━ Step ${authStepNum}: ${sessionReused ? 'Restoring Session & Setup' : 'Authenticating'} ━━━\n`);
+
+    if (sessionReused) {
+      // Restore cookies to browser context
+      await context.addCookies(ctx.cookies);
+      console.log(`✓ Restored ${ctx.cookies.length} cookies to browser`);
+
+      // Also restore cookies to authContext for API calls
+      const authContext = require('./auth-context');
+      const { Cookie } = require('tough-cookie');
+      const toughCookies = ctx.cookies.map(pc => {
+        const cookieStr = `${pc.name}=${pc.value}; Domain=${pc.domain}; Path=${pc.path || '/'}` +
+          (pc.httpOnly ? '; HttpOnly' : '') +
+          (pc.secure ? '; Secure' : '') +
+          (pc.sameSite ? `; SameSite=${pc.sameSite}` : '');
+        try {
+          const cookie = Cookie.parse(cookieStr);
+          if (cookie) {
+            return {
+              key: pc.name,
+              value: pc.value,
+              domain: pc.domain,
+              path: pc.path || '/',
+              httpOnly: pc.httpOnly,
+              secure: pc.secure
+            };
+          }
+        } catch (error) {
+          console.log(`⚠️  Failed to parse cookie ${pc.name}`);
+        }
+        return null;
+      }).filter(Boolean);
+      authContext.setCookies(toughCookies);
+      console.log(`✓ Restored cookies to authContext for API calls`);
+
+      // Use setupTest with existing context - it will only create fund/member if page requires them
+      ctx = await setupTest(page, {
+        firm: ctx.firm,
+        fund: pageInfo.requiresFund ? 'create' : 'skip',
+        member: pageInfo.requiresMember ? 'create' : 'skip',
+        existingContext: ctx,
+        verbose: true
+      });
+    } else {
+      // Full authentication flow
       ctx = await setupTest(page, {
         firm: process.env.FIRM,
         fund: pageInfo.requiresFund ? 'create' : 'skip',
         member: pageInfo.requiresMember ? 'create' : 'skip',
         verbose: true
       });
-
-      console.log('\n✓ Authentication complete');
-      if (ctx.fundId) {
-        console.log(`  Fund: ${ctx.fundName} (${ctx.fundId})`);
-      }
-      if (ctx.memberId) {
-        console.log(`  Member: ${ctx.memberName} (${ctx.memberCode})`);
-      }
-
-      // 4. Save session to tmp/
-      const saveStepNum = authStepNum + 1;
-      console.log(`\n━━━ Step ${saveStepNum}: Saving Session ━━━\n`);
-      if (!fs.existsSync(tmpDir)) {
-        fs.mkdirSync(tmpDir, { recursive: true });
-      }
-
-      const explorationContext = {
-        baseUrl: ctx.baseUrl,
-        firm: ctx.firm,
-        uid: ctx.uid,
-        fundId: ctx.fundId,
-        fundName: ctx.fundName,
-        memberId: ctx.memberId,
-        memberName: ctx.memberName,
-        memberCode: ctx.memberCode,
-        cookies: await context.cookies(),
-        timestamp: new Date().toISOString(),
-        expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString() // 1 hour
-      };
-
-      fs.writeFileSync(sessionPath, JSON.stringify(explorationContext, null, 2));
-      console.log(`✓ Session saved to: tmp/exploration-context.json`);
-      console.log(`  Valid until: ${explorationContext.expiresAt}`);
-    } else {
-      // Restore cookies from existing session
-      console.log('━━━ Step 3: Restoring Session Cookies ━━━\n');
-      await context.addCookies(ctx.cookies);
-      console.log('✓ Cookies restored from saved session');
     }
+
+    console.log('\n✓ Setup complete');
+    if (ctx.fundId) {
+      console.log(`  Fund: ${ctx.fundName} (${ctx.fundId})`);
+    }
+    if (ctx.memberId) {
+      console.log(`  Member: ${ctx.memberName} (${ctx.memberCode})`);
+    }
+
+    // 4. Save/update session to tmp/
+    const saveStepNum = authStepNum + 1;
+    console.log(`\n━━━ Step ${saveStepNum}: Saving Session ━━━\n`);
+    if (!fs.existsSync(tmpDir)) {
+      fs.mkdirSync(tmpDir, { recursive: true });
+    }
+
+    const explorationContext = {
+      baseUrl: ctx.baseUrl,
+      firm: ctx.firm,
+      uid: ctx.uid,
+      fundId: ctx.fundId,
+      fundName: ctx.fundName,
+      memberId: ctx.memberId,
+      memberName: ctx.memberName,
+      memberCode: ctx.memberCode,
+      cookies: await context.cookies(),
+      timestamp: new Date().toISOString(),
+      expiresAt: new Date(Date.now() + 60 * 60 * 1000).toISOString() // 1 hour
+    };
+
+    fs.writeFileSync(sessionPath, JSON.stringify(explorationContext, null, 2));
+    console.log(`✓ Session saved to: tmp/exploration-context.json`);
+    console.log(`  Valid until: ${explorationContext.expiresAt}`);
 
     // Navigate to target page
     const navStepNum = sessionReused ? 4 : 5;

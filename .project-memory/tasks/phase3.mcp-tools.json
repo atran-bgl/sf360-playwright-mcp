@@ -30,7 +30,7 @@
       "id": "P3-002",
       "title": "Create test-plan tool prompt",
       "description": "Create test-plan-prompt.md with instructions for Claude to parse user specs, detect pages, check requirements, explore with Playwright MCP, and generate plan JSON.",
-      "status": "pending",
+      "status": "completed",
       "priority": "critical",
       "acceptanceCriteria": [
         "templates/prompts/test-plan-prompt.md created",
@@ -48,14 +48,14 @@
       "specReference": ".project-memory/specs/mcp-tool-based-test-generation/01-test-plan-tool.md",
       "complexity": "moderate",
       "createdAt": "2026-02-02T00:00:00Z",
-      "updatedAt": "2026-02-02T00:00:00Z",
-      "completedAt": null
+      "updatedAt": "2026-02-04T07:55:00Z",
+      "completedAt": "2026-02-04T07:55:00Z"
     },
     {
       "id": "P3-003",
       "title": "Create test-generate tool prompt",
       "description": "Create test-generate-prompt.md with instructions for Claude to read plan JSON and generate executable Playwright test with setupTest() call.",
-      "status": "pending",
+      "status": "completed",
       "priority": "critical",
       "acceptanceCriteria": [
         "templates/prompts/test-generate-prompt.md created",
@@ -74,14 +74,14 @@
       "specReference": ".project-memory/specs/mcp-tool-based-test-generation/02-test-generate-tool.md",
       "complexity": "moderate",
       "createdAt": "2026-02-02T00:00:00Z",
-      "updatedAt": "2026-02-02T00:00:00Z",
-      "completedAt": null
+      "updatedAt": "2026-02-04T07:55:00Z",
+      "completedAt": "2026-02-04T07:55:00Z"
     },
     {
       "id": "P3-004",
       "title": "Create test-evaluate tool prompt",
       "description": "Create test-evaluate-prompt.md with prompt-based debugging instructions for Claude to run tests, debug with Playwright MCP, and fix iteratively.",
-      "status": "pending",
+      "status": "completed",
       "priority": "critical",
       "acceptanceCriteria": [
         "templates/prompts/test-evaluate-prompt.md created",
@@ -100,14 +100,14 @@
       "specReference": ".project-memory/specs/mcp-tool-based-test-generation/03-test-evaluate-tool.md",
       "complexity": "moderate",
       "createdAt": "2026-02-02T00:00:00Z",
-      "updatedAt": "2026-02-02T00:00:00Z",
-      "completedAt": null
+      "updatedAt": "2026-02-04T07:55:00Z",
+      "completedAt": "2026-02-04T07:55:00Z"
     },
     {
       "id": "P3-005",
       "title": "Create test-report tool prompt",
       "description": "Create test-report-prompt.md with instructions for Claude to generate comprehensive markdown reports for test results.",
-      "status": "pending",
+      "status": "completed",
       "priority": "critical",
       "acceptanceCriteria": [
         "templates/prompts/test-report-prompt.md created",
@@ -127,8 +127,8 @@
       "specReference": ".project-memory/specs/mcp-tool-based-test-generation/04-test-report-tool.md",
       "complexity": "moderate",
       "createdAt": "2026-02-02T00:00:00Z",
-      "updatedAt": "2026-02-02T00:00:00Z",
-      "completedAt": null
+      "updatedAt": "2026-02-04T07:55:00Z",
+      "completedAt": "2026-02-04T07:55:00Z"
     },
     {
       "id": "P3-006",

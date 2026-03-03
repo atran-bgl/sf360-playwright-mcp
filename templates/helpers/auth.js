@@ -102,7 +102,8 @@ async function setupTest(page, options) {
     entityType = 'SMSF',
     memberData = {},
     verbose = false,
-    skipCache = false
+    skipCache = false,
+    existingContext = null
   } = options;
 
   if (!firm) {
@@ -116,6 +117,56 @@ async function setupTest(page, options) {
   }
 
   try {
+    // If existingContext provided, reuse it and skip authentication
+    if (existingContext) {
+      if (verbose) {
+        console.log('Reusing existing authentication context');
+      }
+
+      let context = { ...existingContext };
+
+      // Only create fund if explicitly requested and not already present
+      if (fund === 'create' && !context.fundId) {
+        if (verbose) console.log('Step 4: Creating fund...');
+        const fundResult = await createFund({
+          firm: context.firm,
+          uid: context.uid,
+          baseUrl: context.baseUrl,
+          fundName: fundName || `AutoTest SMSF ${Date.now()}`,
+          entityType
+        });
+        context.fundId = fundResult.fundId;
+        context.fundName = fundResult.fundName;
+        if (verbose) console.log(`✓ Fund created: ${context.fundName} (${context.fundId})`);
+      }
+
+      // Only create member if explicitly requested and not already present
+      if (member === 'create' && !context.memberId) {
+        if (!context.fundId) {
+          throw new Error('Cannot create member without a fund');
+        }
+        if (verbose) console.log('Step 5: Creating member...');
+        const memberResult = await createMember({
+          firm: context.firm,
+          uid: context.uid,
+          fundId: context.fundId,
+          baseUrl: context.baseUrl,
+          firstName: memberData.firstName || 'Test',
+          lastName: memberData.lastName || `Member${Date.now()}`,
+          dateOfBirth: memberData.dateOfBirth || '1980-01-01',
+          sex: memberData.sex || 'Male'
+        });
+        context.memberId = memberResult.memberId;
+        context.memberName = memberResult.memberName;
+        context.memberCode = memberResult.memberCode;
+        context.peopleId = memberResult.peopleId;
+        if (verbose) console.log(`✓ Member created: ${context.memberName} (ID: ${context.memberId}, Code: ${context.memberCode})`);
+      }
+
+      return context;
+    }
+
+    // Otherwise, do full authentication flow
     // Step 0: Load user credentials
     const userCredentials = loadUserCredentials();
     const menuMapping = loadMenuMapping();

@@ -101,9 +101,10 @@ Prefer semantic selectors (`getByRole`, `getByLabel`, `getByPlaceholder`).
 
 **Read** `.playwright-mcp/discoveries/{pageKey}/elements.json`:
 - If file exists → extract selectors from `selectors` section and reuse them
-- If file does NOT exist → you need to discover the page or use generic selectors
-  - For simple pages (search, lists) → use generic selectors (`getByPlaceholder`, `getByRole`)
-  - For complex pages (forms, modals) → document that discovery is recommended before test generation
+- If file does NOT exist → **Call the discover-page tool** to discover the page first
+  - This will create the elements.json file with accurate selectors
+  - After discovery completes, extract and use the discovered selectors
+  - Do not proceed with test planning until discovery is complete
 
 ---
 

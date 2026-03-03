@@ -229,9 +229,12 @@ test('should navigate to {{PAGE_NAME}}', async ({ page }) => {
 ```
 
 **Generate Tests**:
-Use the `generate-test` tool to create tests for this page:
+Use the test generation workflow for this page:
 ```
-pageName: "{{SECTION_KEY}}.{{PAGE_KEY}}"
+1. sf360-test-plan: Create test plan with pageName: "{{SECTION_KEY}}.{{PAGE_KEY}}"
+2. sf360-test-generate: Generate test from plan
+3. sf360-test-evaluate: Run and debug test
+4. sf360-test-report: Get execution report
 ```
 ```
 
@@ -489,7 +492,7 @@ await navigateToPage(page, '{{SECTION_KEY}}.{{PAGE_KEY}}');
 ```
 
 3. **Generate tests**:
-Use the `generate-test` tool with the new page key.
+Use the `sf360-test-plan` tool with the new page key, then follow the 4-tool workflow.
 
 ---
 

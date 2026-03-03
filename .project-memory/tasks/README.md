@@ -119,11 +119,11 @@ P5-001 to P5-003 [can be parallel]
 |-------|-------|---------|-------------|-----------|
 | Phase 1 | 7 | 7 | 0 | 0 |
 | Phase 2 | 6 | 6 | 0 | 0 |
-| Phase 3 | 6 | 6 | 0 | 0 |
+| Phase 3 | 6 | 2 | 0 | 4 |
 | Phase 4 | 4 | 4 | 0 | 0 |
 | Phase 5 | 4 | 4 | 0 | 0 |
 | Phase 6 | 2 | 2 | 0 | 0 |
-| **Total** | **29** | **29** | **0** | **0** |
+| **Total** | **29** | **25** | **0** | **4** |
 
 ### By Priority
 
@@ -185,4 +185,4 @@ All tasks include `specReference` field linking to specification:
 ---
 
 *Created: 2026-02-02*
-*Last Updated: 2026-02-02*
+*Last Updated: 2026-02-04*

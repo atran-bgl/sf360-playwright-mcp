@@ -1,0 +1,17 @@
+{
+  "pageKey": "superstream_fund_contributions",
+  "pageName": "SuperStream Fund Contributions",
+  "pageUrl": "/s/superstream_dashboard/index.html/fund/contributions",
+  "fullUrl": "https://uat.sf360.com.au/s/superstream_dashboard/index.html/fund/contributions?firm=sf360test&uid=518&mid=8a8bed939c2a5d28019c2b179a6602aa",
+  "section": "CONNECT",
+  "requiresFund": true,
+  "requiresMember": true,
+  "discoveredAt": "2026-02-04T23:58:23.745Z",
+  "testData": {
+    "fundId": "8a8bed939c2a5d28019c2b179a6602aa",
+    "fundName": "AutoTest SMSF 1770249492579",
+    "memberId": null,
+    "memberName": "Test Member1770249496257",
+    "memberCode": "MEMTES00002A"
+  }
+}

@@ -26,6 +26,7 @@ async function createContact(options) {
   const {
     firm,
     uid,
+    fundId,
     baseUrl,
     firstName = 'Test',
     lastName = `Member${Date.now()}`,
@@ -36,31 +37,43 @@ async function createContact(options) {
     tfn = ''
   } = options;
 
+  // Build request body with only required fields initially
   const requestBody = {
     people: {
       firstname: firstName,
       surname: lastName,
       birthday: dateOfBirth.split('-').reverse().join('/'), // Convert YYYY-MM-DD to DD/MM/YYYY
       deathDay: null,
-      title: sex === 'Male' ? 'Mr' : 'Ms',
-      sex: sex,
-      email: email,
-      phone: '',
-      mobileNumber: mobile,
-      tfn: tfn,
-      abn: '',
-      otherNames: '',
-      preferredName: '',
-      birthPlace: '',
-      birthState: '',
-      birthCountry: '',
       addressDto: {}
     }
   };
 
+  // Only add optional fields if they have values (not empty strings)
+  // Empty strings cause enum deserialization errors for fields like birthState
+  const optionalFields = {
+    title: sex === 'Male' ? 'Mr' : 'Ms',
+    sex: sex.toUpperCase(), // API expects "MALE" or "FEMALE" (uppercase)
+    email: email,
+    mobileNumber: mobile,
+    tfn: tfn
+  };
+
+  for (const [field, value] of Object.entries(optionalFields)) {
+    if (value !== null && value !== undefined && value !== '') {
+      requestBody.people[field] = value;
+    }
+  }
+
+  // Build URL with fundId if provided (required after fund creation)
+  const fundParam = fundId ? `&mid=${fundId}` : '';
+  const url = `${baseUrl}/entity/mvc/base/addPeople?firm=${firm}&uid=${uid}&personProxyId=1${fundParam}`;
+
   try {
+    console.log(`DEBUG createContact: Posting to ${url}`);
+    console.log(`DEBUG createContact: Request body:`, JSON.stringify(requestBody, null, 2));
+
     const response = await axios.post(
-      `${baseUrl}/entity/mvc/base/addPeople?firm=${firm}&uid=${uid}`,
+      url,
       requestBody,
       {
         headers: {
@@ -69,8 +82,11 @@ async function createContact(options) {
       }
     );
 
-    return response.data; // Returns companyId (peopleId)
+    console.log(`DEBUG createContact: Response status ${response.status}, data:`, response.data);
+    return response.data; // Returns companyId when personProxyId=1
   } catch (error) {
+    console.log(`DEBUG createContact ERROR:`, error.response?.status, error.response?.statusText);
+    console.log(`DEBUG createContact ERROR response data:`, JSON.stringify(error.response?.data, null, 2));
     if (error.response) {
       throw new Error(`Contact creation failed: ${error.response.status} - ${error.response.statusText}`);
     } else if (error.request) {
@@ -82,17 +98,33 @@ async function createContact(options) {
 }
 
 /**
- * Step 2: Get person details including member code
- * @param {string} peopleId - People ID from Step 1
+ * Step 2a: Get peopleId from companyId
+ * @param {string} companyId - Company ID from Step 1
  * @param {Object} options - Request options
- * @returns {Promise<Object>} Person details with memberCode
+ * @returns {Promise<string>} peopleId
  */
-async function getPersonDetails(peopleId, options) {
-  const { firm, uid, baseUrl } = options;
+async function getPeopleIdFromCompanyId(companyId, options) {
+  const { firm, uid, fundId, baseUrl } = options;
+
+  const payload = {
+    filter: {
+      example: {
+        company: {
+          type: "company",
+          id: companyId
+        },
+        hideMobile: false,
+        hideBirthday: false,
+        hideTfn: false,
+        notProvidedNumber: false
+      }
+    }
+  };
 
   try {
-    const response = await axios.get(
-      `${baseUrl}/entity/mvc/base/getPersonDetails/${peopleId}?firm=${firm}&uid=${uid}`,
+    const response = await axios.post(
+      `${baseUrl}/entity/mvc/base/queryPeople?firm=${firm}&uid=${uid}&mid=${fundId}`,
+      payload,
       {
         headers: {
           'Cookie': authContext.getCookieHeader()
@@ -100,14 +132,46 @@ async function getPersonDetails(peopleId, options) {
       }
     );
 
-    return response.data; // Contains id (peopleId) and pcode (memberCode)
+    return response.data.records[0].id; // Returns peopleId
   } catch (error) {
     if (error.response) {
-      throw new Error(`Get person details failed: ${error.response.status} - ${error.response.statusText}`);
+      throw new Error(`Get peopleId failed: ${error.response.status} - ${error.response.statusText}`);
     } else if (error.request) {
-      throw new Error('Get person details failed: No response from server');
+      throw new Error('Get peopleId failed: No response from server');
     } else {
-      throw new Error(`Get person details failed: ${error.message}`);
+      throw new Error(`Get peopleId failed: ${error.message}`);
+    }
+  }
+}
+
+/**
+ * Step 2b: Get member data by peopleId
+ * @param {string} peopleId - People ID from Step 2a
+ * @param {Object} options - Request options
+ * @returns {Promise<Object>} Member data including code, name, etc.
+ */
+async function getMemberDataByPeopleId(peopleId, options) {
+  const { firm, uid, fundId, baseUrl } = options;
+
+  try {
+    const response = await axios.post(
+      `${baseUrl}/chart/chartmvc/MemberController/contact/${peopleId}?firm=${firm}&uid=${uid}&mid=${fundId}`,
+      {},
+      {
+        headers: {
+          'Cookie': authContext.getCookieHeader()
+        }
+      }
+    );
+
+    return response.data; // Contains id, code, companyId, firstName, surname, name
+  } catch (error) {
+    if (error.response) {
+      throw new Error(`Get member data failed: ${error.response.status} - ${error.response.statusText}`);
+    } else if (error.request) {
+      throw new Error('Get member data failed: No response from server');
+    } else {
+      throw new Error(`Get member data failed: ${error.message}`);
     }
   }
 }
@@ -125,35 +189,118 @@ async function createAccumulationAccount(options) {
     baseUrl,
     memberCode,
     peopleId,
-    memberName
+    firstName,
+    lastName,
+    startDate = new Date().toISOString().split('T')[0] // Default to today YYYY-MM-DD
   } = options;
+
+  // Format date as YYYY-MM-DDT10:00:00.000+1000 (Australian timezone)
+  const formattedStartDate = `${startDate}T10:00:00.000+1000`;
 
   const requestBody = {
     id: null,
-    peopleId: peopleId,
-    entityId: fundId,
-    memberName: memberName,
-    memberCode: memberCode,
-    accountType: 'Accumulation',
-    startDate: null,
+    code: memberCode,  // 'code' not 'memberCode'
+    accDes: "Accumulation",
+    accType: "Accumulation",
+    startDate: formattedStartDate,
     endDate: null,
-    defaultAccount: true,
-    transferCapType: 'GeneralTransferBalance',
-    generalTransferBalance: '1600000.00',
-    generalTransferBalanceAsAtDate: null,
-    fields: [
+    serviceDate: formattedStartDate,
+    taxFree: null,
+    balance: null,
+    proportion: null,
+    toPrepare: false,
+    reversionary: false,
+    originalTerm: null,
+    selectedAmount: null,
+    needRefreshTransferCap: false,
+    selectedDate: null,
+    entireTakenOut: false,
+    dob: null,
+    conversionDate: null,
+    conversionDateFromTRISRetire: null,
+    changeContact: false,
+    formType: null,
+    timeframe: null,
+    nominationEndDate: null,
+    capAt1thJuly: false,
+    reversionDate: null,
+    original: false,
+    atFirstYear: false,
+    reversionProportion: null,
+    peopleId: null,
+    originalId: null,
+    allowedFunds: false,
+    allowedTrusts: false,
+    allowedCompanies: false,
+    externalMemberCode: null,
+    accmulationTotal: null,
+    retirementPhaseTotal: null,
+    noJournalCreate: false,
+    reversionAccountId: null,
+    checkJournalFromDate: formattedStartDate,
+    memberId: null,
+    fundId: fundId,  // 'fundId' not 'entityId'
+    accountId: null,
+    contact: {  // Required contact object
+      id: peopleId,
+      name: `${lastName}, ${firstName}`
+    },
+    beneficiaries: [],
+    financials: [  // 'financials' not 'fields'
       {
+        id: null,
         memberAccountId: null,
-        fieldName: 'Employer',
-        isShow: false,
-        fieldValue: '',
+        fieldName: "Current Salary",
+        isShow: true,
+        fieldValue: "",
         withCheckbox: true
       },
       {
+        id: null,
+        memberAccountId: null,
+        fieldName: "Previous Salary",
+        isShow: true,
+        fieldValue: "",
+        withCheckbox: true
+      },
+      {
+        id: null,
+        memberAccountId: null,
+        fieldName: "Death Benefit",
+        isShow: true,
+        fieldValue: "",
+        withCheckbox: true
+      },
+      {
+        id: null,
+        memberAccountId: null,
+        fieldName: "Disability Benefit",
+        isShow: true,
+        fieldValue: "",
+        withCheckbox: true
+      },
+      {
+        id: null,
+        memberAccountId: null,
+        fieldName: "Centrelink Product Reference",
+        isShow: false,
+        fieldValue: "",
+        withCheckbox: true
+      },
+      {
+        id: null,
+        memberAccountId: null,
+        fieldName: "Centrelink Original Purchase Price",
+        isShow: false,
+        fieldValue: "",
+        withCheckbox: false
+      },
+      {
+        id: null,
         memberAccountId: null,
         fieldName: "Employer's ABN",
         isShow: false,
-        fieldValue: '',
+        fieldValue: "",
         withCheckbox: true
       }
     ],
@@ -168,8 +315,11 @@ async function createAccumulationAccount(options) {
   };
 
   try {
+    console.log(`DEBUG createAccumulationAccount: Posting to ${baseUrl}/chart/chartmvc/MemberController/save?firm=${firm}&uid=${uid}&mid=${fundId}`);
+    console.log(`DEBUG createAccumulationAccount: Request body:`, JSON.stringify(requestBody, null, 2).substring(0, 500));
+
     const response = await axios.post(
-      `${baseUrl}/chart/chartmvc/MemberController/save?firm=${firm}&uid=${uid}`,
+      `${baseUrl}/chart/chartmvc/MemberController/save?firm=${firm}&uid=${uid}&mid=${fundId}`,
       requestBody,
       {
         headers: {
@@ -178,8 +328,11 @@ async function createAccumulationAccount(options) {
       }
     );
 
+    console.log(`DEBUG createAccumulationAccount: Response status ${response.status}, data:`, response.data);
     return response.data; // Returns memberId
   } catch (error) {
+    console.log(`DEBUG createAccumulationAccount ERROR:`, error.response?.status, error.response?.statusText);
+    console.log(`DEBUG createAccumulationAccount ERROR response data:`, JSON.stringify(error.response?.data, null, 2));
     if (error.response) {
       throw new Error(`Accumulation account creation failed: ${error.response.status} - ${error.response.statusText}`);
     } else if (error.request) {
@@ -230,11 +383,12 @@ async function createMember(options) {
   try {
     console.log(`Creating member: ${memberName}...`);
 
-    // Step 1: Create contact
+    // Step 1: Create contact (returns companyId when personProxyId=1)
     console.log('  Step 1/3: Creating contact...');
-    const peopleId = await createContact({
+    const companyId = await createContact({
       firm,
       uid,
+      fundId,
       baseUrl,
       firstName,
       lastName,
@@ -250,13 +404,23 @@ async function createMember(options) {
 
     // Step 2: Retrieve member data
     console.log('  Step 2/3: Retrieving member data...');
-    const personDetails = await getPersonDetails(peopleId, {
+    const peopleId = await getPeopleIdFromCompanyId(companyId, {
       firm,
       uid,
+      fundId,
       baseUrl
     });
 
-    const memberCode = personDetails.pcode;
+    const memberData = await getMemberDataByPeopleId(peopleId, {
+      firm,
+      uid,
+      fundId,
+      baseUrl
+    });
+
+    console.log(`DEBUG: memberData:`, JSON.stringify(memberData, null, 2));
+    const memberCode = memberData.code;
+    console.log(`DEBUG: memberCode from memberData.code:`, memberCode);
 
     // Step 3: Create accumulation account
     console.log('  Step 3/3: Creating accumulation account...');
@@ -267,7 +431,8 @@ async function createMember(options) {
       baseUrl,
       memberCode,
       peopleId,
-      memberName
+      firstName,
+      lastName
     });
 
     console.log(`✓ Member created: ${memberName} (ID: ${memberId}, Code: ${memberCode})`);
@@ -288,6 +453,7 @@ async function createMember(options) {
 module.exports = {
   createMember,
   createContact,
-  getPersonDetails,
+  getPeopleIdFromCompanyId,
+  getMemberDataByPeopleId,
   createAccumulationAccount
 };

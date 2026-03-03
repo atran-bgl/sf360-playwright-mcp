@@ -83,6 +83,13 @@
       "requiresFund": false,
       "requiresMember": false
     },
+    "superstream_fund_contributions": {
+      "name": "SuperStream Fund Contributions",
+      "url": "/s/superstream_dashboard/index.html/fund/contributions",
+      "section": "CONNECT",
+      "requiresFund": true,
+      "requiresMember": true
+    },
     "order_documents": {
       "name": "Order Documents",
       "url": "//bgl360.staging.smartersmsf.com",

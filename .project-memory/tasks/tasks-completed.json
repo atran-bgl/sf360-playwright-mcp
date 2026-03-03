@@ -1,3 +1,90 @@
 {
-  "tasks": []
+  "tasks": [
+    {
+      "id": "REFACTOR-001",
+      "title": "Refactor MCP server from Server to McpServer API",
+      "description": "Migrate mcp-server/src/index.ts from deprecated Server class to McpServer class using config-driven tool registration. Replace setRequestHandler with registerTool() calls.",
+      "status": "completed",
+      "priority": "high",
+      "acceptanceCriteria": [
+        "McpServer imported and used instead of Server",
+        "No deprecated API usage (no setRequestHandler)",
+        "ToolConfig interface defined",
+        "projectTools array defined (4 tools: init, discover-page, add-page-mapping, verify-setup)",
+        "packageTools array defined (4 tools: sf360-test-plan, test-generate, test-evaluate, test-report)",
+        "registerTools() function implemented",
+        "All 7 tools registered via registerTool()",
+        "Variable injection works for all tools",
+        "Build succeeds: cd mcp-server && npm run build",
+        "No TypeScript errors",
+        "Package builds: npm pack produces tarball",
+        "Tools discoverable in Claude Desktop",
+        "All tools execute and return prompts correctly",
+        "No breaking changes (tool names/params unchanged)"
+      ],
+      "dependencies": [],
+      "subtasks": [
+        {
+          "id": "REFACTOR-001-1",
+          "title": "Update imports",
+          "status": "completed",
+          "acceptanceCriteria": [
+            "Change Server → McpServer",
+            "Remove CallToolRequestSchema, ListToolsRequestSchema imports",
+            "Add import from server/mcp.js"
+          ]
+        },
+        {
+          "id": "REFACTOR-001-2",
+          "title": "Create tool config arrays",
+          "status": "completed",
+          "acceptanceCriteria": [
+            "ToolConfig interface defined",
+            "projectTools array created (4 tools with full config)",
+            "packageTools array created (4 tools with full config)"
+          ]
+        },
+        {
+          "id": "REFACTOR-001-3",
+          "title": "Create registerTools() function",
+          "status": "completed",
+          "acceptanceCriteria": [
+            "Function iterates over tool config array",
+            "Calls mcpServer.registerTool() for each",
+            "Loads prompt based on promptSource",
+            "Applies variable injection correctly"
+          ]
+        },
+        {
+          "id": "REFACTOR-001-4",
+          "title": "Update main() function and remove old code",
+          "status": "completed",
+          "acceptanceCriteria": [
+            "Change server.connect() → mcpServer.connect()",
+            "Call registerTools() for both arrays",
+            "Delete setRequestHandler calls",
+            "Delete switch statement",
+            "Keep loadPrompt() and loadPackagePrompt() helpers"
+          ]
+        },
+        {
+          "id": "REFACTOR-001-5",
+          "title": "Test refactored MCP server",
+          "status": "completed",
+          "acceptanceCriteria": [
+            "Build succeeds: npm run build",
+            "Pack succeeds: npm pack",
+            "Install test in sf360test-project works",
+            "All 7 tools visible in Claude",
+            "All 7 tools execute correctly"
+          ]
+        }
+      ],
+      "specReference": ".project-memory/specs/active.mcp-server-refactor.md",
+      "complexity": "moderate",
+      "createdAt": "2026-02-04T12:00:00Z",
+      "updatedAt": "2026-02-04T12:30:00Z",
+      "completedAt": "2026-02-04T12:30:00Z"
+    }
+  ]
 }

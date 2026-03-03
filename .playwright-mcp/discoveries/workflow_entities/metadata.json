@@ -2,10 +2,16 @@
   "pageKey": "workflow_entities",
   "pageName": "Workflow Entities",
   "pageUrl": "/s/workflow/list/",
-  "fullUrl": "https://uat.sf360.com.au/s/workflow/list/?firm=sf360test&uid=518",
+  "fullUrl": "https://uat.sf360.com.au/s/workflow/list/?firm=sf360test&uid=518&mid=8a8beb699c2802d8019c2b22fced06c9",
   "section": "WORKFLOW",
   "requiresFund": false,
   "requiresMember": false,
-  "discoveredAt": "2026-02-03T01:23:35.693Z",
-  "testData": {}
+  "discoveredAt": "2026-02-05T00:11:42.655Z",
+  "testData": {
+    "fundId": "8a8beb699c2802d8019c2b22fced06c9",
+    "fundName": "AutoTest SMSF 1770250238645",
+    "memberId": null,
+    "memberName": "Test Member1770250242386",
+    "memberCode": "MEMTES00003A"
+  }
 }
